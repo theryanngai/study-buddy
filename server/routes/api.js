@@ -3,19 +3,35 @@ const express = require('express');
 const router = express.Router();
 const pg = require('pg');
 const path = require('path');
+// auth dependencies
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
 
-const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/todo';
+const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/study-buddy';
+
+const authCheck = jwt({
+  secret: jwks.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: "https://{YOUR-AUTH0-DOMAIN}.auth0.com/.well-known/jwks.json"
+  }),
+  // This is the identifier we set when we created the API
+  audience: '{YOUR-API-AUDIENCE-ATTRIBUTE}',
+  issuer: "https://{YOUR-AUTH0-DOMAIN}.auth0.com/",
+  algorithms: ['RS256']
+});
 
 /* GET api listing */
 router.get('/', (req, res, next) => {
   res.send('api works dude');
 });
 
-/* CREATE todos */
-router.post('/v1/todos', (req, res, next) => {
+/* CREATE user */
+router.post('/users', (req, res, next) => {
   const results = [];
   // Grab data from http request
-  const data = { text: req.body.text, complete: false };
+  const data = { username: req.body.username, email:  req.body.email };
   // Get a Postgres client from the connection pool
   pg.connect(connectionString, (err, client, done) => {
   // Handle connection errors
@@ -26,11 +42,11 @@ router.post('/v1/todos', (req, res, next) => {
     }
     // SQL Query > Insert Data
     client.query(
-      'INSERT INTO items(text, complete) values($1, $2)',
-      [data.text, data.complete],
+      'INSERT INTO users(username, email) values($1, $2)',
+      [data.username, data.email],
     );
     // SQL Query > Select Data
-    const query = client.query('SELECT * FROM items ORDER BY id ASC');
+    const query = client.query('SELECT * FROM users ORDER BY id ASC');
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
@@ -44,8 +60,8 @@ router.post('/v1/todos', (req, res, next) => {
 });
 
 
-/* GET todos */
-router.get('/v1/todos', (req, res, next) => {
+/* GET users */
+router.get('/users', authCheck,  (req, res, next) => {
   const results = [];
   // Get a Postgres client from the connection pool
   pg.connect(connectionString, (err, client, done) => {
@@ -56,7 +72,7 @@ router.get('/v1/todos', (req, res, next) => {
       return res.status(500).json({ success: false, data: err });
     }
     // SQL Query > Select Data
-    const query = client.query('SELECT * FROM items ORDER BY id ASC;');
+    const query = client.query('SELECT * FROM users ORDER BY id ASC;');
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
