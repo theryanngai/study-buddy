@@ -7,7 +7,7 @@ import { AuthenticationService, User } from './authentication.service';
   template: `
     <div class="container">
       <div class="title">
-        Welcome
+        <h1>Quizzing Reimagined.</h1>
       </div>
       <div class="panel-body">
         <div class="row">
