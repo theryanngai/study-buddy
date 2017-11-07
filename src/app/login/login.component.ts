@@ -20,7 +20,7 @@ import { AuthenticationService, User } from './authentication.service';
 
         <div class="row">
           <div class="form-group col s12">
-            <input [(ngModel)]="user.password" id="password"
+            <input [(ngModel)]="user.password" id="password" 
                    type="password" class="validate form-control">
             <label for="password">Password</label>
           </div>
