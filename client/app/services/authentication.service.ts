@@ -26,17 +26,21 @@ export class AuthenticationService {
   }
 
   login(user){
-    var authenticatedUser = users.find(u => u.email === user.email);
-    if (authenticatedUser && authenticatedUser.password === user.password){
-      // localStorage.setItem("user", authenticatedUser);
-      this._router.navigate(['Home']);
-      return true;
-    }
-    return false;
+    debugger;
+    console.log('Attempting to login user.username');
+    this.http.post('/auth/login', user)
+      .subscribe(
+        data => {
+          console.log('Successfully logged in ', user.username);
+        },
+        err => {
+          console.log(err);
+        }
+      );
   }
 
   register(user) {
-    console.log('Attempting to register User');
+    console.log('Attempting to register user.username');
     this.http.post('/auth/register', user)
       .subscribe(
         data => {

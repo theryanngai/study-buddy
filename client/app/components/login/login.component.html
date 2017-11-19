@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="title">
+    <h1>Quizzing Reimagined.</h1>
+  </div>
+  <div class="panel-body">
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+      <div class="row">
+        <div class="form-group col s12">
+          <span><label for="username">Username</label></span>
+          <input [(ngModel)]="username" id="username" name="username"
+                 type="text" class="form-control">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col s12">
+          <span><label for="password">Password</label></span>
+          <input [(ngModel)]="password" id="password" name="password"
+                 type="password" class="validate form-control">
+        </div>
+      </div>
+      <span>{{errorMsg}}</span>
+      <button class="btn btn-primary" type="submit" name="login">Login</button>
+    </form>
+  </div>
+</div>
+
+
+
