@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
         <ul class="nav navbar-nav">
           <li><a routerLink="/dashboard">Dashboard</a></li>
           <li><a routerLink="/login">Login</a></li>
+          <li><a routerLink="/register">Create an Account</a></li>
           <li><a>My Profile</a></li>
           <li><a>Create A Quiz</a></li>
           <li><a>Search</a></li>

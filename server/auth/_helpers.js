@@ -12,8 +12,8 @@ function createUser(req, res) {
       const hash = bcrypt.hashSync(req.body.password, salt);
       return knex('users')
         .insert({
-          firstname: req.body.firstname,
-          lastname: req.body.lastname,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
           username: req.body.username,
           email: req.body.email,
           password: hash,

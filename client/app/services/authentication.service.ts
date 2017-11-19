@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 export class User {
   constructor(
     public email: string,
-    public password: string) { }
+    public password: string) {}
 }
 
 var users = [
@@ -16,7 +17,8 @@ var users = [
 export class AuthenticationService {
 
   constructor(
-    private _router: Router){}
+    private _router: Router,
+    private http: HttpClient) {}
 
   logout() {
     localStorage.removeItem("user");
@@ -31,7 +33,19 @@ export class AuthenticationService {
       return true;
     }
     return false;
+  }
 
+  register(user) {
+    console.log('Attempting to register User');
+    this.http.post('/auth/register', user)
+      .subscribe(
+        data => {
+          console.log('Successfully saved user: ', user.username);
+        },
+        err =>  {
+          console.log(err);
+        }
+      );
   }
 
   checkCredentials(){

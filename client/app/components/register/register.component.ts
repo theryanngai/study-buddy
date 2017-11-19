@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { User } from '../../models/user';
 
@@ -11,8 +11,10 @@ import { User } from '../../models/user';
 export class RegisterComponent {
   user:any;
 
+  constructor(private authService: AuthenticationService) {};
+
   submit(userInfo) {
     this.user = new User(userInfo);
-    this.user.save();
+    this.authService.register(this.user);
   }
 }

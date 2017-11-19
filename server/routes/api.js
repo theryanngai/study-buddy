@@ -2,8 +2,6 @@ const express = require('express');
 
 const router = express.Router();
 
-const db = require('../queries');
-
 
 // router.get('/users', db.getAllUsers);
 // router.get('/users/:id', db.getSingleUser);
