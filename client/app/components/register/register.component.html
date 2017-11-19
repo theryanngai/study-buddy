@@ -1,43 +1,14 @@
 <div class="container">
-  <div class="title">
-    <h1>Quizzing Reimagined.</h1>
-  </div>
-  <div class="panel-body">
-    <div class="row">
-      <div class="form-group col s12">
-        <input [(ngModel)]="user.username" id="username"
-               type="text" class="form-control">
-        <label for="username">Username</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="form-group col s12">
-        <input [(ngModel)]="user.firstname" id="firstname"
-               type="text" class="form-control">
-        <label for="firstname">First Name</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="form-group col s12">
-        <input [(ngModel)]="user.lastname" id="lastname"
-               type="text" class="form-control">
-        <label for="lastname">Last Name</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="form-group col s12">
-        <input [(ngModel)]="user.password" id="password"
-               type="password" class="validate form-control">
-        <label for="password">Password</label>
-      </div>
-    </div>
-
-    <span>{{errorMsg}}</span>
-    <button (click)="login()"
-            class="btn btn-primary"
-            type="submit" name="action">Login</button>
-  </div>
+  <h1>Registration Form</h1>
+  <form #registrationForm="ngForm" (ngSubmit)="submit(registrationForm.value)">
+    <input type="text" placeholder="Your first name" name="firstName" [(ngModel)]="firstName">
+    <input type="text" placeholder="Your last name" name="lastName" [(ngModel)]="lastName">
+    <input type="text" placeholder="Your e-mail" name="email" [(ngModel)]="email">
+    <input type="text" placeholder="Desired username" name="username" [(ngModel)]="username">
+    <input type="text" placeholder="Desired password" name="password" [(ngModel)]="password">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 </div>
+
+
+

@@ -28,8 +28,8 @@ describe('routes : auth', () => {
         .send({
           username: 'frameoncue',
           password: 'superduperpassword',
-          firstname: 'ryan',
-          lastname: 'ngai',
+          firstName: 'ryan',
+          lastName: 'ngai',
           email: 'iremain@gmail.com',
         })
         .end((err, res) => {
@@ -70,7 +70,7 @@ describe('routes : auth', () => {
           username: 'yo',
           password: 'yoguogu',
           email: 'yo@yoyoyo.com',
-          firstname: 'yoyoyo',
+          firstName: 'yoyoyo',
         })
         .end((err, res) => {
           should.exist(res.error);
@@ -89,7 +89,7 @@ describe('routes : auth', () => {
           username: 'michael',
           password: 'na',
           email: 'mifhdlfjk@fjkdfjk.com',
-          firstname: 'weirdo',
+          firstName: 'weirdo',
         })
         .end((err, res) => {
           should.exist(res.error);

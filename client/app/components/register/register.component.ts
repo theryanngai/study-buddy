@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService, User } from '../../services/authentication.service';
-
+import { AuthenticationService } from '../../services/authentication.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-register',
@@ -8,11 +8,11 @@ import { AuthenticationService, User } from '../../services/authentication.servi
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
+  user:any;
 
-  constructor() { }
-
-  ngOnInit() {
+  submit(userInfo) {
+    this.user = new User(userInfo);
+    this.user.save();
   }
-
 }
