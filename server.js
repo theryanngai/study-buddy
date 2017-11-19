@@ -6,12 +6,13 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const passport = require('passport');
-const session = require('express-session');
+// const session = require('express-session');
 
 
 // Get our API routes
-const api = require('./server/routes/api');
-const authRoutes = require('./server/routes/auth');
+const routeConfig = require('./server/config/route-config');
+// const api = require('./server/routes/api');
+// const authRoutes = require('./server/routes/auth');
 
 const app = express();
 
@@ -32,8 +33,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // Set our server-side routes
-app.use('/api', api);
-app.use('/auth', authRoutes);
+routeConfig.init(app);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
