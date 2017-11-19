@@ -11,7 +11,7 @@ const session = require('express-session');
 
 // Get our API routes
 const api = require('./server/routes/api');
-const authRoutes = require('./server/routes/authRoutes');
+const authRoutes = require('./server/routes/auth');
 
 const app = express();
 
@@ -19,11 +19,11 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({
-  secret: process.env.SECRET_KEY,
-  resave: false,
-  saveUninitialized: true
-}));
+// app.use(session({
+//   secret: process.env.SECRET_KEY,
+//   resave: false,
+//   saveUninitialized: true
+// }));
 app.use(cors());
 app.use(passport.initialize());
 app.use(passport.session());

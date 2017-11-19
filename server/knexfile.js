@@ -1,14 +1,20 @@
-// Update with your config settings.
+const dbName = 'study_buddy';
 
 module.exports = {
-
   development: {
     client: 'postgresql',
-    connection: {
-      database: 'study_buddy',
-    },
+    connection: `postgres://localhost:5432/${dbName}`,
     migrations: {
-      directory: __dirname + '/src/server/db/migrations'
+      directory: __dirname + '/db/migrations'
+    },
+    debug: true,
+  },
+
+  test: {
+    client: 'postgresql',
+    connection: `postgres://localhost:5432/${dbName}_test`,
+    migrations: {
+      directory: __dirname + '/db/migrations'
     },
     debug: true,
   },

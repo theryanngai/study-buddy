@@ -1,20 +1,16 @@
 const passport = require('passport');
-const LocalStartegy = require('passport-local').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
+const authHelpers = require('./_helpers');
 const init = require('./passport');
-const promise = require('bluebird');
+const knex = require('../db/knex');
 
-const options = {
-  promiseLib: promise,
-};
-
-const pgp = require('pg-promise')(options);
-const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/study_buddy';
-const db = pgp(connectionString);
+const options = {};
 
 init();
 
 passport.use(new LocalStrategy(options, (username, password, done) => {
-  db.one('select * from users where id = $1', id)
+  // check to see if the username exists
+  knex('users').where({ username }).first()
     .then((user) => {
       if (!user) return done(null, false);
       if (!authHelpers.comparePass(password, user.password)) {
