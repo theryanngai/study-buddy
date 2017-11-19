@@ -26,15 +26,16 @@ export class AuthenticationService {
   }
 
   login(user){
-    debugger;
     console.log('Attempting to login user.username');
     this.http.post('/auth/login', user)
       .subscribe(
         data => {
           console.log('Successfully logged in ', user.username);
+          return data;
         },
         err => {
           console.log(err);
+          return false;
         }
       );
   }

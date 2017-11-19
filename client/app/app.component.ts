@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
           <li><a routerLink="/login">Login</a></li>
           <li><a routerLink="/register">Create an Account</a></li>
           <li><a>My Profile</a></li>
-          <li><a>Create A Quiz</a></li>
+          <li><a routerLink="/quiz/create">Create A Quiz</a></li>
           <li><a>Search</a></li>
           <li><a>Placeholder</a></li>
         </ul>
