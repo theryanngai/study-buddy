@@ -5,7 +5,10 @@ module.exports = {
     client: 'postgresql',
     connection: `postgres://localhost:5432/${dbName}`,
     migrations: {
-      directory: __dirname + '/db/migrations'
+      directory: __dirname + '/db/migrations',
+    },
+    seeds: {
+      directory: __dirname + '/db/seeds',
     },
     debug: true,
   },
@@ -15,6 +18,9 @@ module.exports = {
     connection: `postgres://localhost:5432/${dbName}_test`,
     migrations: {
       directory: __dirname + '/db/migrations'
+    },
+    seeds: {
+      directory: __dirname + '/db/seeds',
     },
     debug: true,
   },
