@@ -9,18 +9,19 @@ export class QuizService {
 
   create(quiz){
     console.log('Attempting to create Quiz: ', quiz.title);
+    quiz.userId = 12345;
     debugger;
-    // this.http.post('/auth/login', user)
-    //   .subscribe(
-    //     data => {
-    //       console.log('Successfully logged in ', user.username);
-    //       return data;
-    //     },
-    //     err => {
-    //       console.log(err);
-    //       return false;
-    //     }
-    //   );
+    this.http.post('/quiz/create', quiz)
+      .subscribe(
+        data => {
+          console.log('Successfully saved quiz ', quiz.title);
+          return data;
+        },
+        err => {
+          console.log(err);
+          return false;
+        }
+      );
   }
 
   register(user) {
