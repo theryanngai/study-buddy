@@ -1,3 +1,17 @@
-<p>
-  quiz-creator works!
-</p>
+<div class="container">
+  <h1>Quiz Creator</h1>
+  <form #quizCreator="ngForm" (ngSubmit)="submit(quizCreator.value)">
+    <div class="form-group col s12">
+      <span><label for="title">Title</label></span>
+      <input [(ngModel)]="title" id="title" name="title"
+             type="text" class="form-control">
+    </div>
+    <!--<input type="text" placeholder="Your first name" name="firstName" [(ngModel)]="firstName">-->
+    <!--<input type="text" placeholder="Your last name" name="lastName" [(ngModel)]="lastName">-->
+    <!--<input type="text" placeholder="Your e-mail" name="email" [(ngModel)]="email">-->
+    <!--<input type="text" placeholder="Desired username" name="username" [(ngModel)]="username">-->
+    <!--<input type="text" placeholder="Desired password"-->
+           <!--type="password" name="password" [(ngModel)]="password">-->
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

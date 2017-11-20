@@ -1,4 +1,3 @@
-import { AuthenticationService } from '../services/authentication.service';
 
 export class User {
   firstName: string;
@@ -13,11 +12,6 @@ export class User {
     this.email = userInfo.email;
     this.username = userInfo.username;
     this.password = userInfo.password;
-  }
-
-  save() {
-    // this.authService.register(this);
-    console.log(this.firstName, this.lastName, this.username, this.password, this.email);
   }
 }
 

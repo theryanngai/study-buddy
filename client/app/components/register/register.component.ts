@@ -9,7 +9,7 @@ import { User } from '../../models/user';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  user:any;
+  user: any;
 
   constructor(private authService: AuthenticationService) {};
 

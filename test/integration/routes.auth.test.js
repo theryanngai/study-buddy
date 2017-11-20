@@ -183,7 +183,7 @@ describe('routes : auth', () => {
         password: 'johnson123',
       });
       chai.request(server)
-        .get('/user')
+        .get('/api/user')
         .end((err, res) => {
           should.not.exist(err);
           res.redirects.length.should.eql(0);
@@ -196,7 +196,7 @@ describe('routes : auth', () => {
 
     it('should throw an error if a user is not logged in', (done) => {
       chai.request(server)
-        .get('/user')
+        .get('/api/user')
         .end((err, res) => {
           should.exist(res.error);
           res.redirects.length.should.eql(0);

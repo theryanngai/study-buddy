@@ -13,11 +13,11 @@ export class LoginComponent implements OnInit {
   public errorMsg = '';
 
   constructor(
-    private _authService:AuthenticationService) {}
+    private _authService: AuthenticationService) {}
 
   login(loginInfo) {
     this.user = new User(loginInfo);
-    if(!this._authService.login(this.user)){
+    if (!this._authService.login(this.user)) {
       this.errorMsg = 'Failed to login';
     }
   }
