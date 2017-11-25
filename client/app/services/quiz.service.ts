@@ -10,8 +10,7 @@ export class QuizService {
   create(quiz){
     console.log('Attempting to create Quiz: ', quiz.title);
     quiz.userId = 12345;
-    debugger;
-    this.http.post('/quiz/create', quiz)
+    this.http.post('/quizzes/create', quiz)
       .subscribe(
         data => {
           console.log('Successfully saved quiz ', quiz.title);

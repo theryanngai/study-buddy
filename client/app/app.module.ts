@@ -5,9 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule, routingComponents } from './app.routing';
 import { QuizCreatorComponent } from './components/quizzes/quiz-creator/quiz-creator.component';
+import { QuestionCreatorComponent } from './components/quizzes/question-creator/question-creator.component';
 
 @NgModule({
-  declarations: [ AppComponent, routingComponents, QuizCreatorComponent ],
+  declarations: [ AppComponent, routingComponents, QuizCreatorComponent, QuestionCreatorComponent ],
   imports: [ BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, AppRoutingModule ],
   providers: [],
   bootstrap: [ AppComponent ]

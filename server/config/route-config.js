@@ -8,13 +8,13 @@
     const api = require('../routes/api');
     const authRoutes = require('../routes/auth');
     const userRoutes = require('../routes/users');
-    const quizRoutes = require('../routes/quizzes');
+    const quizRoutes = require('../routes/quizzes/quizzes');
 
     // *** register routes *** //
     app.use('/api', api);
     app.use('/api', userRoutes);
     app.use('/auth', authRoutes);
-    app.use('/quiz', quizRoutes);
+    app.use('/quizzes', quizRoutes);
   };
 
 })(module.exports);

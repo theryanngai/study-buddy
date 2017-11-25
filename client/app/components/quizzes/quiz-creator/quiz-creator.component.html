@@ -6,12 +6,15 @@
       <input [(ngModel)]="title" id="title" name="title"
              type="text" class="form-control">
     </div>
-    <!--<input type="text" placeholder="Your first name" name="firstName" [(ngModel)]="firstName">-->
-    <!--<input type="text" placeholder="Your last name" name="lastName" [(ngModel)]="lastName">-->
-    <!--<input type="text" placeholder="Your e-mail" name="email" [(ngModel)]="email">-->
-    <!--<input type="text" placeholder="Desired username" name="username" [(ngModel)]="username">-->
-    <!--<input type="text" placeholder="Desired password"-->
-           <!--type="password" name="password" [(ngModel)]="password">-->
+
+    <div class="form-group col s12">
+      <span><label for="description">Description</label></span>
+      <input [(ngModel)]="description" id="description" name="description"
+             type="text" class="form-control">
+    </div>
+
+    <question-creator></question-creator>
+
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
