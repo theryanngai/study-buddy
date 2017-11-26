@@ -1,3 +1,17 @@
-<p>
-  quiz works!
-</p>
+<div class="container">
+  <h1>{{ quiz.title }}</h1>
+  <form #quizForm="ngForm" (ngSubmit)="submit(quizForm.value)">
+
+    <div *ngFor="let question of quizQuestions">
+      <question></question>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<div [hidden]="!isCreationComplete()" class="container">
+  <quiz-creation-results></quiz-creation-results>
+</div>
+
+<!--<button (click)="getParams()">jfksdfjk</button>-->

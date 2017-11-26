@@ -1,4 +1,4 @@
-<div [hidden]="isCreationComplete()" class="container">
+<div [hidden]="isCreationComplete" class="container">
   <h1>Quiz Creator</h1>
   <form #quizCreator="ngForm" (ngSubmit)="submit(quizCreator.value)">
     <div class="form-group col s12">
@@ -23,6 +23,6 @@
   </form>
 </div>
 
-<div [hidden]="!isCreationComplete()" class="container">
+<div [hidden]="!isCreationComplete" class="container">
   <quiz-creation-results></quiz-creation-results>
 </div>

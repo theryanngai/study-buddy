@@ -30,4 +30,10 @@ export class QuizService {
     console.log('Attempting to create Answer: ', answer.answerText);
     return this.http.post(createAnswerUrl, answer);
   }
+
+  getQuizById(quizId) {
+    const getQuizByIdUrl = '/api/quizzes/' + quizId;
+    console.log('Attempting to retrieve QuizID: ', quizId);
+    return this.http.get(getQuizByIdUrl, quizId);
+  }
 }

@@ -16,7 +16,7 @@ export class QuizCreatorComponent {
     private viewChildren: QueryList<QuestionCreatorComponent>;
 
   quiz: any;
-  creationComplete: boolean;
+  isCreationComplete: boolean = false;
   quizQuestions: any = [0];
 
   constructor(private _quizService: QuizService) {}
@@ -35,7 +35,10 @@ export class QuizCreatorComponent {
         (err) => {
           console.error(err);
         },
-            () => console.log('Quiz Creation Success!'),
+            () => {
+              this.isCreationComplete = true;
+              console.log('Quiz Creation Success!');
+            }
       );
   }
 
@@ -43,7 +46,7 @@ export class QuizCreatorComponent {
     this.quizQuestions.push(0);
   }
 
-  isCreationComplete() {
-    false;
-  }
+  // isCreationComplete() {
+  //   false;
+  // }
 }

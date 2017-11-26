@@ -3,6 +3,7 @@ const knex = require('../db/knex');
 function getQuizById(req, res) {
   return knex('quizzes')
     .where('id', parseInt(req.params.id))
+    .first()
     .returning('*')
     .catch((err) => {
       res.status(400).json({ status: err.message });
