@@ -23,9 +23,21 @@ export class QuizCreatorComponent {
 
   submit(quizDetails) {
     this.quiz = new Quiz(quizDetails);
-    this._quizService.create(this.quiz);
+    this._quizService.create(this.quiz)
+      .subscribe(
+        (response: any) => {
+          //create Questions
+          console.log('created Quiz: ', response.title);
+        },
+        (err) => {
+          console.error(err);
+        },
+            () => console.log('Quiz Creation Success!'),
+      );
 
-    this.viewChildren.forEach((questionComponent) => { questionComponent.doTestThing(); });
+    this.viewChildren.forEach((questionComponent) => {
+      // questionComponent.doTestThing();
+    });
   }
 
   addQuestion() {

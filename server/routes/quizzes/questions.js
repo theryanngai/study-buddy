@@ -14,9 +14,10 @@ questionsRouter.get('/:questionId', (req, res, next) => _quizHelpers.getQuestion
   .catch((err) => { handleResponse(res, 500, 'error'); }));
 
 questionsRouter.post('/create', _authHelpers.loginRedirect, (req, res, next) => _quizHelpers.createQuestion(req, res)
-  .then((response) => {
-  })
-  .catch((err) => { handleResponse(res, 500, 'error'); }));
+  .then(
+    response => res.send(response),
+    err => handleResponse(res, 500, 'error'),
+  ));
 
 function handleResponse(res, code, statusMsg) {
   res.status(code).json({ status: statusMsg });

@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { Question } from '../../../models/question';
+import { QuizService } from '../../../services/quiz.service';
 
 @Component({
   selector: 'question-creator',
-  providers: [],
+  providers: [QuizService],
   templateUrl: './question-creator.component.html',
   styleUrls: ['./question-creator.component.css']
 })
@@ -11,19 +12,11 @@ import { Question } from '../../../models/question';
 export class QuestionCreatorComponent {
   @Input() quiz: any;
   @Input() questionText: string;
-  @Input() testText: string;
   question: any;
 
-  constructor() {};
+  constructor(private _quizService: QuizService) {};
 
-  doTestThing() {
-    console.log(this.questionText);
+  createQuestion() {
+    // this.question = new Question();
   }
-
-
-
-  // submit(questionDetails) {
-  //   this.question = new Question(questionDetails);
-  //   this._quizService.create(this.question);
-  // }
 }
