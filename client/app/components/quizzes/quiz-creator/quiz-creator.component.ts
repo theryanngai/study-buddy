@@ -1,26 +1,31 @@
+import { AfterViewInit, QueryList, ViewChildren } from '@angular/core';
 import { Component } from '@angular/core';
 import { Quiz } from '../../../models/quiz';
 import { QuizService } from '../../../services/quiz.service';
+import { QuestionCreatorComponent } from '../question-creator/question-creator.component';
 
 @Component({
-  selector: 'app-quiz-creator',
+  selector: 'quiz-creator',
   providers: [QuizService],
   templateUrl: './quiz-creator.component.html',
   styleUrls: ['./quiz-creator.component.css']
 })
 
 export class QuizCreatorComponent {
+  @ViewChildren(QuestionCreatorComponent)
+    private viewChildren: QueryList<QuestionCreatorComponent>;
+
   quiz: any;
   creationComplete: boolean;
-  testText:string = 'hello';
   quizQuestions: any = [0];
 
   constructor(private _quizService: QuizService) {};
 
   submit(quizDetails) {
-    debugger;
     this.quiz = new Quiz(quizDetails);
     this._quizService.create(this.quiz);
+
+    this.viewChildren.forEach((questionComponent) => { questionComponent.doTestThing(); });
   }
 
   addQuestion() {

@@ -10,10 +10,15 @@ import { Question } from '../../../models/question';
 
 export class QuestionCreatorComponent {
   @Input() quiz: any;
+  @Input() questionText: string;
   @Input() testText: string;
   question: any;
 
   constructor() {};
+
+  doTestThing() {
+    console.log(this.questionText);
+  }
 
 
 
