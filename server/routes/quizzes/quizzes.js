@@ -8,14 +8,6 @@ const questionRouter = require('./questions.js');
 
 quizRouter.use('/:id/questions', questionRouter);
 
-// uncomment and add in loginRedirect once session is being properly persisted
-// quizRouter.post('/create', _authHelpers.loginRedirect, (req, res, next) => {
-quizRouter.post('/create', (req, res, next) => _quizHelpers.createQuiz(req, res)
-  .then((response) => {
-    console.log(response);
-  })
-  .catch((err) => { handleResponse(res, 500, 'error'); }));
-
 quizRouter.get('/:id', (req, res, next) => _quizHelpers.getQuizById(req, res)
   .then((response) => {
     return res.json(response);
@@ -24,6 +16,15 @@ quizRouter.get('/:id', (req, res, next) => _quizHelpers.getQuizById(req, res)
 
 function handleResponse(res, code, statusMsg) {
   res.status(code).json({ status: statusMsg });
+
+
+// uncomment and add in loginRedirect once session is being properly persisted
+// quizRouter.post('/create', _authHelpers.loginRedirect, (req, res, next) => {
+quizRouter.post('/create', (req, res, next) => _quizHelpers.createQuiz(req, res)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((err) => { handleResponse(res, 500, 'error'); }));
 }
 
 module.exports = quizRouter;

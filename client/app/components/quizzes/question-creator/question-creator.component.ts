@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Question } from '../../../models/question';
 
 @Component({
@@ -9,9 +9,13 @@ import { Question } from '../../../models/question';
 })
 
 export class QuestionCreatorComponent {
+  @Input() quiz: any;
+  @Input() testText: string;
   question: any;
 
   constructor() {};
+
+
 
   // submit(questionDetails) {
   //   this.question = new Question(questionDetails);

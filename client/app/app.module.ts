@@ -6,9 +6,13 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule, routingComponents } from './app.routing';
 import { QuizCreatorComponent } from './components/quizzes/quiz-creator/quiz-creator.component';
 import { QuestionCreatorComponent } from './components/quizzes/question-creator/question-creator.component';
+import { QuizCreationResultsComponent } from './components/quizzes/quiz-creation-results/quiz-creation-results.component';
 
 @NgModule({
-  declarations: [ AppComponent, routingComponents, QuizCreatorComponent, QuestionCreatorComponent ],
+  declarations: [ AppComponent, routingComponents,
+    QuizCreatorComponent,
+    QuestionCreatorComponent,
+    QuizCreationResultsComponent ],
   imports: [ BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, AppRoutingModule ],
   providers: [],
   bootstrap: [ AppComponent ]

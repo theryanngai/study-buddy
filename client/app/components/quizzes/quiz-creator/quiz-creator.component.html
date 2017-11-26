@@ -1,4 +1,4 @@
-<div class="container">
+<div [hidden]="isCreationComplete()" class="container">
   <h1>Quiz Creator</h1>
   <form #quizCreator="ngForm" (ngSubmit)="submit(quizCreator.value)">
     <div class="form-group col s12">
@@ -13,8 +13,16 @@
              type="text" class="form-control">
     </div>
 
-    <question-creator></question-creator>
+    <div *ngFor="let question of quizQuestions">
+      <question-creator [quiz]="quiz"></question-creator>
+    </div>
+
+    <button type="button" (click)="addQuestion()">Add Another Question</button>
 
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+</div>
+
+<div [hidden]="!isCreationComplete()" class="container">
+  <quiz-creation-results></quiz-creation-results>
 </div>
