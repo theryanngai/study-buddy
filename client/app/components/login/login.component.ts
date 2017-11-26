@@ -10,6 +10,8 @@ import { User } from '../../models/user';
 })
 export class LoginComponent implements OnInit {
   user: any;
+  successfulLogin: boolean;
+  public successMsg = '';
   public errorMsg = '';
 
   constructor(
@@ -17,9 +19,20 @@ export class LoginComponent implements OnInit {
 
   login(loginInfo) {
     this.user = new User(loginInfo);
-    // if (!this._authService.login(this.user)) {
-    //   this.errorMsg = 'Failed to login';
-    // }
+    this._authService.login(this.user)
+      .subscribe(
+      (user: any) => {
+        this.successfulLogin = true;
+        this.successMsg = 'Successfully logged in as: ' + user.username;
+        console.log('Logged in: ', user.username);
+      },
+      (err) => {
+        this.errorMsg = 'Failed to login.';
+        this.successfulLogin = false;
+        console.error(err);
+      },
+      () => console.log('Login successful!'),
+    );
   }
 
   ngOnInit() {

@@ -16,7 +16,7 @@ export class QuizService {
 
   createQuestion(question){
     const createQuestionUrl = '/quizzes/' + question.quizId + '/questions/create';
-    console.log('Attempting to create Question: ', question.title);
+    console.log('Attempting to create Question: ', question.questionText);
     return this.http.post(createQuestionUrl, question);
   }
 

@@ -18,7 +18,8 @@
                  type="password" class="validate form-control">
         </div>
       </div>
-      <span>{{errorMsg}}</span>
+      <span [hidden]="!successfulLogin">{{ successMsg }}</span>
+      <span [hidden]="successfulLogin">{{ errorMsg }}</span>
       <button class="btn btn-primary" type="submit" name="login">Login</button>
     </form>
   </div>

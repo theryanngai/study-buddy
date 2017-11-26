@@ -15,7 +15,7 @@ questionsRouter.get('/:questionId', (req, res, next) => _quizHelpers.getQuestion
 
 questionsRouter.post('/create', _authHelpers.loginRedirect, (req, res, next) => _quizHelpers.createQuestion(req, res)
   .then(
-    response => res.send(response),
+    response => res.send(response[0]),
     err => handleResponse(res, 500, 'error'),
   ));
 

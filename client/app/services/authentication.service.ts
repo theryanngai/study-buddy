@@ -13,18 +13,8 @@ export class AuthenticationService {
   // }
 
   login(user){
-    console.log('Attempting to login user.username');
-    this.http.post('/auth/login', user)
-      .subscribe(
-        data => {
-          console.log('Successfully logged in ', user.username);
-          return data;
-        },
-        err => {
-          console.log(err);
-          return false;
-        }
-      );
+    console.log('Attempting to login', user.username);
+    return this.http.post('/auth/login', user);
   }
 
   register(user) {
