@@ -20,6 +20,12 @@ export class QuizService {
     return this.http.post(createQuestionUrl, question);
   }
 
+  createAnswer(answer){
+    const createAnswerUrl = '/quizzes/' + answer.questionId + '/answers/create';
+    console.log('Attempting to create Answer: ', answer.answerText);
+    return this.http.post(createAnswerUrl, answer);
+  }
+
   register(user) {
     console.log('Attempting to register user.username');
     this.http.post('/auth/register', user)

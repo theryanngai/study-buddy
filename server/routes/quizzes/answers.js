@@ -11,10 +11,12 @@ answersRouter.get('', (req, res, next) => _quizHelpers.getAnswersByQuestionId(re
   .catch((err) => { handleResponse(res, 500, 'error'); }));
 
 
-answersRouter.post('/create', _authHelpers.loginRedirect, (req, res, next) => _quizHelpers.createAnswers(req, res)
-  .then((response) => {
-  })
-  .catch((err) => { handleResponse(res, 500, 'error'); }));
+answersRouter.post('/create', _authHelpers.loginRedirect, (req, res, next) => _quizHelpers.createAnswer(req, res)
+  .then(
+    response => res.send(response[0]),
+    err => handleResponse(res, 500, 'error'),
+  ));
+
 
 function handleResponse(res, code, statusMsg) {
   res.status(code).json({ status: statusMsg });

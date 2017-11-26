@@ -57,6 +57,20 @@ function createQuestion(req, res) {
     });
 }
 
+function createAnswer(req, res) {
+  return handleAnswerErrors(req)
+    .then(() => knex('answers')
+      .insert({
+        questionId: req.body.questionId,
+        answerText: req.body.answerText,
+        answerType: req.body.answerType,
+      })
+      .returning('*'))
+    .catch((err) => {
+      res.status(400).json({ status: err.message });
+    });
+}
+
 function handleQuizErrors(req) {
   return new Promise((resolve, reject) => {
     if (!req.body.title) {
@@ -97,7 +111,24 @@ function handleQuestionErrors(req) {
   });
 }
 
+function handleAnswerErrors(req) {
+  return new Promise((resolve, reject) => {
+    if (!req.body.questionId) {
+      reject({
+        message: 'Parent question id not found -- must not be null.',
+      });
+    } else if (!req.body.answerText) {
+      reject({
+        message: 'Answer Text not found -- must not be null.',
+      });
+    } else {
+      resolve();
+    }
+  });
+}
+
 module.exports = {
+  createAnswer,
   createQuiz,
   createQuestion,
   getQuizById,
