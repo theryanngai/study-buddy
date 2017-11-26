@@ -47,7 +47,6 @@ function createQuestion(req, res) {
     .then(() => knex('questions')
       .insert({
         quizId: req.body.quizId,
-        correctAnswerId: req.body.correctAnswerId,
         questionText: req.body.questionText,
         questionType: req.body.questionType,
       })
@@ -92,10 +91,6 @@ function handleQuestionErrors(req) {
     if (!req.body.quizId) {
       reject({
         message: 'Parent quiz id not found -- must not be null.',
-      });
-    } else if (!req.body.correctAnswerId) {
-      reject({
-        message: 'Correct Answer Id not found -- must not be null.',
       });
     } else if (!req.body.questionText) {
       reject({

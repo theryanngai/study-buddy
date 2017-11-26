@@ -16,7 +16,6 @@ export class QuestionCreatorComponent {
   private viewChildren: QueryList<AnswerCreatorComponent>;
 
   @Input() questionText: string;
-  @Input() correctAnswerId: number;
   @Input() questionType: string;
   question: any;
 
@@ -28,7 +27,6 @@ export class QuestionCreatorComponent {
       quizId: quizId,
       // Need to eventually add option for users to create Essay type questions.
       questionType: 'multipleChoice',
-      correctAnswerId: this.correctAnswerId,
     };
 
     this.question = new Question(questionDetails);
