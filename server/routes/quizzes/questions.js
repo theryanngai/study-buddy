@@ -13,7 +13,8 @@ questionsRouter.get('/:questionId', (req, res, next) => _quizHelpers.getQuestion
   .then(response => res.json(response))
   .catch((err) => { handleResponse(res, 500, 'error'); }));
 
-questionsRouter.post('/create', _authHelpers.loginRedirect, (req, res, next) => _quizHelpers.createQuestion(req, res)
+// questionsRouter.post('/create', _authHelpers.loginRedirect, (req, res, next) => _quizHelpers.createQuestion(req, res)
+questionsRouter.post('/create', (req, res, next) => _quizHelpers.createQuestion(req, res)
   .then(
     response => res.send(response[0]),
     err => handleResponse(res, 500, 'error'),

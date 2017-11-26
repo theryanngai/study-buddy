@@ -27,7 +27,6 @@ export class QuizCreatorComponent {
       .subscribe(
         (response: any) => {
           this.viewChildren.forEach((questionComponent) => {
-            console.log('attempting to create Question: ', questionComponent.questionText);
             questionComponent.createQuestion(response.id);
           });
 

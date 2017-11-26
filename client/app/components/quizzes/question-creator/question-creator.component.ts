@@ -18,6 +18,7 @@ export class QuestionCreatorComponent {
   @Input() questionText: string;
   @Input() questionType: string;
   question: any;
+  answers: any = [0];
 
   constructor(private _quizService: QuizService) {};
 
@@ -36,11 +37,11 @@ export class QuestionCreatorComponent {
         (response: any) => {
           this.viewChildren.forEach((answerComponent) => {
             const questionInfo = {
+              quizId: response.quizId,
               questionId: response.id,
               questionType: response.questionType,
             };
 
-            console.log('attempting to create Answer: ', answerComponent.answerText);
             answerComponent.createAnswer(questionInfo);
           });
           console.log('created Question: ', response.questionText);
@@ -50,5 +51,9 @@ export class QuestionCreatorComponent {
         },
         () => console.log('Question Creation Success!'),
       );
+  }
+
+  addAnswer() {
+    this.answers.push(0);
   }
 }

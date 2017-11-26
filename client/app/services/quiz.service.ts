@@ -20,8 +20,15 @@ export class QuizService {
     return this.http.post(createQuestionUrl, question);
   }
 
-  createAnswer(answer){
-    const createAnswerUrl = '/quizzes/' + answer.questionId + '/answers/create';
+  createAnswer(answer, quizId) {
+    const createAnswerUrl = [
+      '/quizzes/',
+      quizId,
+      '/questions/',
+      answer.questionId,
+      '/answers/create'
+    ].join('');
+
     console.log('Attempting to create Answer: ', answer.answerText);
     return this.http.post(createAnswerUrl, answer);
   }

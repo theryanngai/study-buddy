@@ -63,6 +63,7 @@ function createAnswer(req, res) {
         questionId: req.body.questionId,
         answerText: req.body.answerText,
         answerType: req.body.answerType,
+        isCorrect: req.body.isCorrect,
       })
       .returning('*'))
     .catch((err) => {

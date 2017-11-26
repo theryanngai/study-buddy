@@ -6,6 +6,6 @@
 
 <div class="form-group col s12">
   <span><label for="isCorrect">Correct Answer?</label></span>
-  <input [(ngModel)]="isCorrect" id="isCorrect" name="isCorrect"
-         type="text" class="form-control">
+  <input [checked]="isCorrect" id="isCorrect" name="isCorrect"
+         type="checkbox" class="form-control" (change)="isCorrect = !isCorrect">
 </div>

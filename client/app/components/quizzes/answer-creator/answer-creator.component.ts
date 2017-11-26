@@ -12,7 +12,7 @@ import { QuizService } from '../../../services/quiz.service';
 export class AnswerCreatorComponent {
   @Input() answerText: string;
   @Input() answerType: string;
-  @Input() isCorrect: boolean;
+  @Input() isCorrect: boolean = false;
   answer: any;
 
   constructor(private _quizService: QuizService) {};
@@ -27,9 +27,11 @@ export class AnswerCreatorComponent {
       answerType: questionInfo.questionType,
     };
 
+    const quizId = questionInfo.quizId;
+
     this.answer = new Answer(answerDetails);
 
-    this._quizService.createAnswer(this.answer)
+    this._quizService.createAnswer(this.answer, quizId)
       .subscribe(
         (response: any) => {
           console.log('created Answer: ', response.answerText);

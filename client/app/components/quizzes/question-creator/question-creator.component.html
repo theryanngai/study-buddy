@@ -3,3 +3,10 @@
   <input [(ngModel)]="questionText" id="questionText" name="questionText"
          type="text" class="form-control">
 </div>
+
+<div *ngFor="let answer of answers">
+  <answer-creator></answer-creator>
+</div>
+
+<button type="button" (click)="addAnswer()">Add Another Answer</button>
+
