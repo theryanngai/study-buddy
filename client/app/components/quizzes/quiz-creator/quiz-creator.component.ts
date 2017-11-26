@@ -19,14 +19,18 @@ export class QuizCreatorComponent {
   creationComplete: boolean;
   quizQuestions: any = [0];
 
-  constructor(private _quizService: QuizService) {};
+  constructor(private _quizService: QuizService) {}
 
   submit(quizDetails) {
     this.quiz = new Quiz(quizDetails);
-    this._quizService.create(this.quiz)
+    this._quizService.createQuiz(this.quiz)
       .subscribe(
         (response: any) => {
-          //create Questions
+          this.viewChildren.forEach((questionComponent) => {
+            console.log('attempting to create Question: ', questionComponent.questionText);
+            questionComponent.createQuestion(response.id);
+          });
+
           console.log('created Quiz: ', response.title);
         },
         (err) => {
@@ -34,10 +38,6 @@ export class QuizCreatorComponent {
         },
             () => console.log('Quiz Creation Success!'),
       );
-
-    this.viewChildren.forEach((questionComponent) => {
-      // questionComponent.doTestThing();
-    });
   }
 
   addQuestion() {

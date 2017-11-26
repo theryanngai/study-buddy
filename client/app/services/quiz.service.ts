@@ -8,17 +8,16 @@ export class QuizService {
   constructor(
     private http: HttpClient) {}
 
-  create(quiz){
+  createQuiz(quiz){
     console.log('Attempting to create Quiz: ', quiz.title);
     quiz.userId = 12345;
-    return this.http.post('/quizzes/create', quiz)
-      // .map(res => res.json());
-      // .toPromise(
-      //   quiz => {
-      //     console.log('Successfully saved quiz ', quiz.title);
-      //     return quiz;
-      //   }
-      // );
+    return this.http.post('/quizzes/create', quiz);
+  }
+
+  createQuestion(question){
+    const createQuestionUrl = '/quizzes/' + question.quizId + '/questions/create';
+    console.log('Attempting to create Question: ', question.title);
+    return this.http.post(createQuestionUrl, question);
   }
 
   register(user) {

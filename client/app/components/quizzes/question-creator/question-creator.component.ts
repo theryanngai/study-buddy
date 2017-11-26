@@ -10,13 +10,33 @@ import { QuizService } from '../../../services/quiz.service';
 })
 
 export class QuestionCreatorComponent {
-  @Input() quiz: any;
   @Input() questionText: string;
+  @Input() correctAnswerId: number;
+  @Input() questionType: string;
   question: any;
 
   constructor(private _quizService: QuizService) {};
 
-  createQuestion() {
-    // this.question = new Question();
+  createQuestion(quizId) {
+    const questionDetails: any = {
+      questionText: this.questionText,
+      quizId: quizId,
+      questionType: 'multipleChoice',
+      correctAnswerId: this.correctAnswerId,
+    };
+
+    this.question = new Question(questionDetails);
+
+    this._quizService.createQuestion(this.question)
+      .subscribe(
+        (response: any) => {
+          //create Answers
+          console.log('created Question: ', response.questionText);
+        },
+        (err) => {
+          console.error(err);
+        },
+        () => console.log('Question Creation Success!'),
+      );
   }
 }
