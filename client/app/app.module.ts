@@ -5,16 +5,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule, routingComponents } from './app.routing';
 import { QuizCreatorComponent } from './components/quizzes/quiz-creator/quiz-creator.component';
-import { QuestionCreatorComponent } from './components/quizzes/question-creator/question-creator.component';
-import { QuizCreationResultsComponent } from './components/quizzes/quiz-creation-results/quiz-creation-results.component';
-import { AnswerCreatorComponent } from './components/quizzes/answer-creator/answer-creator.component';
+import { QuestionCreatorComponent } from './components/quizzes/quiz-creator/question-creator/question-creator.component';
+import { QuizCreationResultsComponent } from './components/quizzes/quiz-creator/quiz-creation-results/quiz-creation-results.component';
+import { AnswerCreatorComponent } from './components/quizzes/quiz-creator/question-creator/answer-creator/answer-creator.component';
+import { QuizComponent } from './components/quizzes/quiz/quiz.component';
+import { QuestionComponent } from './components/quizzes/quiz/question/question.component';
+import { AnswerComponent } from './components/quizzes/quiz/question/answer/answer.component';
 
 @NgModule({
   declarations: [ AppComponent, routingComponents,
     QuizCreatorComponent,
     QuestionCreatorComponent,
     QuizCreationResultsComponent,
-    AnswerCreatorComponent ],
+    AnswerCreatorComponent,
+    QuizComponent,
+    QuestionComponent,
+    AnswerComponent ],
   imports: [ BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, AppRoutingModule ],
   providers: [],
   bootstrap: [ AppComponent ]

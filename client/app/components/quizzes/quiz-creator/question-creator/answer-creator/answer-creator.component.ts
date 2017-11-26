@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Answer } from '../../../models/answer';
-import { QuizService } from '../../../services/quiz.service';
+import { Answer } from '../../../../../models/answer';
+import { QuizService } from '../../../../../services/quiz.service';
 
 @Component({
   selector: 'answer-creator',

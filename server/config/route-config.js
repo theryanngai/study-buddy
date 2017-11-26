@@ -14,7 +14,7 @@
     app.use('/api', api);
     app.use('/api', userRoutes);
     app.use('/auth', authRoutes);
-    app.use('/quizzes', quizRoutes);
+    app.use('/api/quizzes', quizRoutes);
   };
 
 })(module.exports);

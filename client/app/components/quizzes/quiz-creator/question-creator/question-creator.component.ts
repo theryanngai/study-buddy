@@ -1,8 +1,8 @@
 import { QueryList, ViewChildren } from '@angular/core';
 import { Component, Input } from '@angular/core';
-import { Question } from '../../../models/question';
-import { QuizService } from '../../../services/quiz.service';
-import {AnswerCreatorComponent} from "../answer-creator/answer-creator.component";
+import { Question } from '../../../../models/question';
+import { QuizService } from '../../../../services/quiz.service';
+import {AnswerCreatorComponent} from "./answer-creator/answer-creator.component";
 
 @Component({
   selector: 'question-creator',

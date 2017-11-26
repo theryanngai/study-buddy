@@ -4,7 +4,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { QuizCreatorComponent } from './components/quizzes/quiz-creator/quiz-creator.component';
-import { QuizCreationResultsComponent} from './components/quizzes/quiz-creation-results/quiz-creation-results.component';
+import { QuizCreationResultsComponent} from './components/quizzes/quiz-creator/quiz-creation-results/quiz-creation-results.component';
+import { QuizComponent } from './components/quizzes/quiz/quiz.component';
 
 const routes: Routes = [
   // {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'quiz/create', component: QuizCreatorComponent },
-  { path: 'quiz/create/results', component: QuizCreationResultsComponent ,}
+  { path: 'quiz/create/results', component: QuizCreationResultsComponent },
+  { path: 'quiz/:quizId', component: QuizComponent },
 ];
 
 @NgModule({
@@ -27,6 +29,7 @@ export const routingComponents = [
   RegisterComponent,
   QuizCreatorComponent,
   QuizCreationResultsComponent,
+  QuizComponent,
 ];
 
 

@@ -2,7 +2,7 @@ import { QueryList, ViewChildren } from '@angular/core';
 import { Component } from '@angular/core';
 import { Quiz } from '../../../models/quiz';
 import { QuizService } from '../../../services/quiz.service';
-import { QuestionCreatorComponent } from '../question-creator/question-creator.component';
+import { QuestionCreatorComponent } from './question-creator/question-creator.component';
 
 @Component({
   selector: 'quiz-creator',
