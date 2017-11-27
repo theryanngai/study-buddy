@@ -36,4 +36,16 @@ export class QuizService {
     console.log('Attempting to retrieve QuizID: ', quizId);
     return this.http.get(getQuizByIdUrl, quizId);
   }
+
+  getQuestionsByQuizId(quizId) {
+    const getQuestionsByQuizIdUrl = '/api/quizzes/' + quizId + '/questions';
+    console.log('Attempting to retrieve Questions for QuizID: ', quizId);
+    return this.http.get(getQuestionsByQuizIdUrl, quizId);
+  }
+
+  getAnswersByQuestionId(quizId, questionId) {
+    const getAnswersUrl = '/api/quizzes/' + quizId + '/questions/' + questionId + '/answers';
+    console.log('Attempting to retrieve Answers for QuestionID: ', questionId);
+    return this.http.get(getAnswersUrl, questionId);
+  }
 }

@@ -1,15 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { QueryList, ViewChildren } from '@angular/core';
+import { QuizService } from '../../../../services/quiz.service';
+import { AnswerComponent } from './answer/answer.component';
+
 
 @Component({
   selector: 'question',
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.css']
 })
-export class QuestionComponent implements OnInit {
 
-  constructor() { }
+export class QuestionComponent implements OnInit {
+  @ViewChildren(AnswerComponent)
+  private viewChildren: QueryList<AnswerComponent>;
+  @Input() question: any;
+  @Input() questionNumber: number;
+  questionAnswers: any = [];
+  quizId: number;
+
+  constructor(private _quizService: QuizService) {}
+
+  getAnswers(question) {
+    this._quizService.getAnswersByQuestionId(question.quizId, question.id)
+      .subscribe(
+        (response: any) => {
+          if (response.length > 0) {
+            console.log('Successfully retrieved Answers: ', response);
+            response.forEach(question => this.questionAnswers.push(question));
+          } else {
+            console.error('404', 'No Answers found for question: ' + question.questionId);
+          }
+        },
+        (err) => {
+          console.error(err);
+        },
+        () => console.log('Answer Retrieval Attempt Complete.'),
+      );
+  }
 
   ngOnInit() {
+    this.getAnswers(this.question);
   }
 
 }

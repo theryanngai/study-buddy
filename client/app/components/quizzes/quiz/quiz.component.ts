@@ -17,9 +17,9 @@ export class QuizComponent implements OnInit {
   @ViewChildren(QuestionComponent)
   private viewChildren: QueryList<QuestionComponent>;
 
-  quiz: any;
+  quiz: any = { title: '' };
   quizId: any;
-  quizQuestions: any = [0, 0, 0];
+  quizQuestions: any = [];
 
   constructor(private _quizService: QuizService, private route: ActivatedRoute) {}
 
@@ -27,12 +27,10 @@ export class QuizComponent implements OnInit {
     this._quizService.getQuizById(quizId)
       .subscribe(
         (response: any) => {
-          // this.viewChildren.forEach((questionComponent) => {
-          //   questionComponent.getQuestionByQuizId(response.id);
-          // });
           if (response) {
             console.log('retrieved Quiz: ', response.title);
             this.quiz = response;
+            this.getQuestions(this.quiz.id);
           } else {
             console.error('404', 'Quiz not found');
           }
@@ -41,6 +39,24 @@ export class QuizComponent implements OnInit {
           console.error(err);
         },
         () => console.log('Quiz Retrieval Attempt Complete.'),
+      );
+  }
+
+  getQuestions(quizId) {
+    this._quizService.getQuestionsByQuizId(quizId)
+      .subscribe(
+        (response: any) => {
+          if (response.length > 0) {
+            console.log('Successfully retrieved Questions: ', response);
+            response.forEach(question => this.quizQuestions.push(question));
+          } else {
+            console.error('404', 'No Questions found for quiz: ' + quizId);
+          }
+        },
+        (err) => {
+          console.error(err);
+        },
+        () => console.log('Question Retrieval Attempt Complete.'),
       );
   }
 

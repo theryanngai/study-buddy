@@ -2,7 +2,7 @@ const knex = require('../db/knex');
 
 function getQuizById(req, res) {
   return knex('quizzes')
-    .where('id', parseInt(req.params.id))
+    .where('id', parseInt(req.params.quizId))
     .first()
     .returning('*')
     .catch((err) => {
@@ -12,7 +12,16 @@ function getQuizById(req, res) {
 
 function getQuestionById(req, res) {
   return knex('questions')
-    .where('id', parseInt(req.params.id))
+    .where('id', parseInt(req.params.questionId))
+    .returning('*')
+    .catch((err) => {
+      res.status(400).json({ status: err.message });
+    });
+}
+
+function getQuestionsByQuizId(req, res) {
+  return knex('questions')
+    .where('quizId', parseInt(req.params.quizId))
     .returning('*')
     .catch((err) => {
       res.status(400).json({ status: err.message });
@@ -130,5 +139,6 @@ module.exports = {
   createQuestion,
   getQuizById,
   getQuestionById,
+  getQuestionsByQuizId,
   getAnswersByQuestionId,
 };
