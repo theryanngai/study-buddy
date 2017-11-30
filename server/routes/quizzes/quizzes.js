@@ -10,13 +10,13 @@ quizRouter.use('/:quizId/questions', questionRouter);
 
 // uncomment and add in loginRedirect once session is being properly persisted
 // quizRouter.post('/create', _authHelpers.loginRedirect, (req, res, next) => {
-quizRouter.post('/create', (req, res, next) => _quizHelpers.createQuiz(req, res)
+quizRouter.post('/create', _authHelpers.loginRequired, (req, res, next) => _quizHelpers.createQuiz(req, res)
   .then(
     response => res.send(response[0]),
     err => handleResponse(res, 500, 'error'),
   ));
 
-quizRouter.get('/:quizId', (req, res, next) => _quizHelpers.getQuizById(req, res)
+quizRouter.get('/:quizId', _authHelpers.loginRequired, (req, res, next) => _quizHelpers.getQuizById(req, res)
   .then(
     (response) => {
       if (!response) return next(new Error('failed to find quiz'));

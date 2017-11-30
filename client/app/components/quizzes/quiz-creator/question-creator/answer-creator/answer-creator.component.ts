@@ -10,6 +10,7 @@ import { QuizService } from '../../../../../services/quiz.service';
 })
 
 export class AnswerCreatorComponent {
+  @Input() answerNumber: number;
   @Input() answerText: string;
   @Input() answerType: string;
   @Input() isCorrect: boolean = false;

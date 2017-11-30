@@ -22,6 +22,7 @@ function getQuestionById(req, res) {
 function getQuestionsByQuizId(req, res) {
   return knex('questions')
     .where('quizId', parseInt(req.params.quizId))
+    .orderBy('created_at')
     .returning('*')
     .catch((err) => {
       res.status(400).json({ status: err.message });
@@ -31,6 +32,7 @@ function getQuestionsByQuizId(req, res) {
 function getAnswersByQuestionId(req, res) {
   return knex('answers')
     .where('questionId', parseInt(req.params.questionId))
+    .orderBy('created_at')
     .returning('*')
     .catch((err) => {
       res.status(400).json({ status: err.message });
@@ -43,7 +45,7 @@ function createQuiz(req, res) {
       .insert({
         title: req.body.title,
         tags: req.body.tags,
-        userId: req.body.userId,
+        userId: req.user.id,
         description: req.body.description,
       })
       .returning('*'))
@@ -87,9 +89,9 @@ function handleQuizErrors(req) {
       reject({
         message: 'Title was not found. A title must be selected to save this quiz',
       });
-    } else if (!req.body.userId) {
+    } else if (!req.user.id) {
       reject({
-        message: 'User was not found. A user must be provided to save this quiz',
+        message: 'Logged in user was not found. A user must be provided to save this quiz',
       });
     } else {
       resolve();

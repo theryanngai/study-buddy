@@ -1,6 +1,6 @@
 <div class="container">
   <h1>{{ quiz.title }}</h1>
-  <form #quizForm="ngForm" (ngSubmit)="submit(quizForm.value)">
+  <form #quizForm="ngForm" (ngSubmit)="submit()">
 
     <div *ngFor="let question of quizQuestions; let i = index" [attr.data-index]="i">
       <question [question]="question" [questionNumber]="i + 1"></question>

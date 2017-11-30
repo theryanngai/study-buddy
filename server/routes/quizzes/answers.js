@@ -13,7 +13,7 @@ answersRouter.get('', (req, res, next) => _quizHelpers.getAnswersByQuestionId(re
   ));
 
 
-answersRouter.post('/create', _authHelpers.loginRedirect, (req, res, next) => _quizHelpers.createAnswer(req, res)
+answersRouter.post('/create', _authHelpers.loginRequired, (req, res, next) => _quizHelpers.createAnswer(req, res)
   .then(
     response => res.send(response[0]),
     err => handleResponse(res, 500, 'error'),

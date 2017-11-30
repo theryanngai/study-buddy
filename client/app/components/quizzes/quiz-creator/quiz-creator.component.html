@@ -13,12 +13,12 @@
              type="text" class="form-control">
     </div>
 
-    <div *ngFor="let question of quizQuestions">
-      <question-creator></question-creator>
+    <div *ngFor="let question of quizQuestions;let i = index" [attr.data-index]="i">
+      <question-creator [questionNumber]="i + 1"></question-creator>
     </div>
 
     <button type="button" (click)="addQuestion()">Add Another Question</button>
-
+    <br>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>

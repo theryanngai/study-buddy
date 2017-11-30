@@ -15,6 +15,7 @@ export class QuestionCreatorComponent {
   @ViewChildren(AnswerCreatorComponent)
   private viewChildren: QueryList<AnswerCreatorComponent>;
 
+  @Input() questionNumber: number;
   @Input() questionText: string;
   @Input() questionType: string;
   question: any;

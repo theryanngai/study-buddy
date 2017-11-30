@@ -8,7 +8,6 @@ export class QuizService {
 
   createQuiz(quiz){
     console.log('Attempting to create Quiz: ', quiz.title);
-    quiz.userId = 12345;
     return this.http.post('/api/quizzes/create', quiz);
   }
 

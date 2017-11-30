@@ -1,6 +1,7 @@
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { QueryList, ViewChildren } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Quiz } from '../../../models/quiz';
 import { QuizService } from '../../../services/quiz.service';
 import { QuestionComponent } from './question/question.component';
@@ -16,10 +17,11 @@ import { QuestionComponent } from './question/question.component';
 export class QuizComponent implements OnInit {
   @ViewChildren(QuestionComponent)
   private viewChildren: QueryList<QuestionComponent>;
-
   quiz: any = { title: '' };
   quizId: any;
-  quizQuestions: any = [];
+  quizQuestions: Array<any> = [];
+  submitted: Boolean = false;
+  // score: Number;
 
   constructor(private _quizService: QuizService, private route: ActivatedRoute) {}
 
@@ -68,21 +70,16 @@ export class QuizComponent implements OnInit {
     this.getQuizDetails(this.quizId);
   }
 
-  // submit(quizDetails) {
-  // this.quiz = new Quiz(quizDetails);
-  // this._quizService.createQuiz(this.quiz)
-  //   .subscribe(
-  //     (response: any) => {
-  //       this.viewChildren.forEach((questionComponent) => {
-  //         questionComponent.createQuestion(response.id);
-  //       });
-  //
-  //       console.log('created Quiz: ', response.title);
-  //     },
-  //     (err) => {
-  //       console.error(err);
-  //     },
-  //     () => console.log('Quiz Creation Success!'),
-  //   );
-  //  }
+  submit() {
+    const questionCount = this.quizQuestions.length;
+    let correctCount = 0;
+    this.viewChildren.forEach((questionComponent) => {
+      if (questionComponent.isQuestionSolved) {
+        correctCount += 1;
+      }
+    });
+
+    this.submitted = true;
+    alert('You got ' + correctCount + ' out of ' + questionCount + 'correct for a score of ' + correctCount/questionCount*100 + '%.');
+  }
 }
