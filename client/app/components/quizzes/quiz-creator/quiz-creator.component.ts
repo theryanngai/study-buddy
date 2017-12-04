@@ -16,6 +16,7 @@ export class QuizCreatorComponent {
     private viewChildren: QueryList<QuestionCreatorComponent>;
 
   quiz: any;
+  quizId: number;
   isCreationComplete: boolean = false;
   quizQuestions: any = [0];
 
@@ -29,6 +30,7 @@ export class QuizCreatorComponent {
           this.viewChildren.forEach((questionComponent) => {
             questionComponent.createQuestion(response.id);
           });
+          this.quizId = response.id;
 
           console.log('created Quiz: ', response.title);
         },

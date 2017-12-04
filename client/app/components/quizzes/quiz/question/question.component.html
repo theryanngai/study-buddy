@@ -1,4 +1,4 @@
-<div [formGroup]="quizForm" class="container">
+<div class="container">
   <h3>{{ questionNumber }}. {{ question.questionText }}</h3>
   <div *ngFor="let answer of questionAnswers; let answerIdx = index" [attr.data-index]="answerIdx">
     <span>

@@ -8,29 +8,34 @@ const answersRouter = require('./answers.js');
 
 questionsRouter.use('/:questionId/answers', answersRouter);
 
-questionsRouter.get('', _authHelpers.loginRequired,
-  (req, res, next) => _quizHelpers.getQuestionsByQuizId(req, res)
-  .then(
-    response => res.send(response),
-    err => handleResponse(res, 500, 'error'),
-  ));
-
-
-questionsRouter.get('/:questionId', _authHelpers.loginRequired,
-  (req, res, next) => _quizHelpers.getQuestionById(req, res)
-  .then(response => res.json(response))
-  .catch((err) => { handleResponse(res, 500, 'error'); }));
-
-
-questionsRouter.post('/create', _authHelpers.loginRequired,
-  (req, res, next) => _quizHelpers.createQuestion(req, res)
-  .then(
-    response => res.send(response[0]),
-    err => handleResponse(res, 500, 'error'),
-  ));
 
 function handleResponse(res, code, statusMsg) {
   res.status(code).json({ status: statusMsg });
 }
+
+questionsRouter.get(
+  '', _authHelpers.loginRequired,
+  (req, res, next) => _quizHelpers.getQuestionsByQuizId(req, res)
+    .then(
+      response => res.json(response),
+      err => handleResponse(res, 500, 'error'),
+    ),
+);
+
+questionsRouter.get(
+  '/:questionId', _authHelpers.loginRequired,
+  (req, res, next) => _quizHelpers.getQuestionById(req, res)
+    .then(response => res.json(response))
+    .catch((err) => { handleResponse(res, 500, 'error'); }),
+);
+
+questionsRouter.post(
+  '/create', _authHelpers.loginRequired,
+  (req, res, next) => _quizHelpers.createQuestion(req, res)
+    .then(
+      response => res.json(response[0]),
+      err => handleResponse(res, 500, 'error'),
+    ),
+);
 
 module.exports = questionsRouter;
