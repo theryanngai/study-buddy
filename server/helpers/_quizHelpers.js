@@ -10,6 +10,16 @@ function getQuizById(req, res) {
     });
 }
 
+function getQuizzesByCurrentUser(req, res) {
+  const userId = req.user.id;
+  return knex('quizzes')
+    .where('userId', parseInt(userId))
+    .returning('*')
+    .catch((err) => {
+      res.status(400).json({ status: err.message });
+    });
+}
+
 function getQuestionById(req, res) {
   return knex('questions')
     .where('id', parseInt(req.params.questionId))
@@ -140,6 +150,7 @@ module.exports = {
   createQuiz,
   createQuestion,
   getQuizById,
+  getQuizzesByCurrentUser,
   getQuestionById,
   getQuestionsByQuizId,
   getAnswersByQuestionId,

@@ -16,6 +16,17 @@ quizRouter.post('/create', _authHelpers.loginRequired, (req, res, next) => _quiz
     err => handleResponse(res, 500, 'error'),
   ));
 
+// Returns all quizzes created by the current user (for Dashboard purposes)
+quizRouter.get('/myQuizzes', _authHelpers.loginRequired, (req, res, next) => _quizHelpers.getQuizzesByCurrentUser(req, res)
+  .then(
+    (response) => {
+      if (!response) return next(new Error("failed to find current user's created quizzes"));
+      res.send(response);
+      next();
+    },
+    err => handleResponse(res, 500, 'error'),
+  ));
+
 quizRouter.get('/:quizId', _authHelpers.loginRequired, (req, res, next) => _quizHelpers.getQuizById(req, res)
   .then(
     (response) => {
