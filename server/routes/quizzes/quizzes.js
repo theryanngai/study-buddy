@@ -27,6 +27,10 @@ quizRouter.get('/myQuizzes', _authHelpers.loginRequired, (req, res, next) => _qu
     err => handleResponse(res, 500, 'error'),
   ));
 
+function handleResponse(res, code, statusMsg) {
+  res.status(code).json({ status: statusMsg });
+}
+
 quizRouter.get('/:quizId', _authHelpers.loginRequired, (req, res, next) => _quizHelpers.getQuizById(req, res)
   .then(
     (response) => {
@@ -37,8 +41,18 @@ quizRouter.get('/:quizId', _authHelpers.loginRequired, (req, res, next) => _quiz
     err => handleResponse(res, 500, 'error'),
   ));
 
-function handleResponse(res, code, statusMsg) {
-  res.status(code).json({ status: statusMsg });
-}
+/*
+  Returns all quizzes whose titles have matches for the provided searchString.
+  Eventually need to extend this to respect tags, and probably add a more sophisticated
+  search algorithm.
+*/
+quizRouter.get('/search/:searchString', _authHelpers.loginRequired, (req, res, next) => _quizHelpers.searchQuizzes(req, res)
+  .then(
+    (response) => {
+      res.send(response);
+      next();
+    },
+    err => handleResponse(res, 500, 'error'),
+  ));
 
 module.exports = quizRouter;

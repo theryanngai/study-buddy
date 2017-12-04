@@ -11,4 +11,10 @@ export class DashboardService {
     console.log('Attempting to get quizzes created by current user.');
     return this.http.get(getUserQuizzesUrl);
   }
+
+  findQuizzes(searchString) {
+    const searchQuizzesUrl = '/api/quizzes/search/' + searchString;
+    console.log('Attempting to find quizzes using keyword(s): ', searchString);
+    return this.http.get(searchQuizzesUrl);
+  }
 }

@@ -93,6 +93,17 @@ function createAnswer(req, res) {
     });
 }
 
+function searchQuizzes(req, res) {
+  const searchString = req.params.searchString;
+
+  return knex('quizzes')
+    .where('title', 'ilike', searchString)
+    .returning('*')
+    .catch((err) => {
+      res.status(400).json({ status: err.message });
+    });
+}
+
 function handleQuizErrors(req) {
   return new Promise((resolve, reject) => {
     if (!req.body.title) {
@@ -151,6 +162,7 @@ module.exports = {
   createQuestion,
   getQuizById,
   getQuizzesByCurrentUser,
+  searchQuizzes,
   getQuestionById,
   getQuestionsByQuizId,
   getAnswersByQuestionId,
