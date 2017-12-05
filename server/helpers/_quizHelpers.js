@@ -97,7 +97,7 @@ function searchQuizzes(req, res) {
   const searchString = req.params.searchString;
 
   return knex('quizzes')
-    .where('title', 'ilike', searchString)
+    .where('title', 'ilike', '%' + searchString + '%')
     .returning('*')
     .catch((err) => {
       res.status(400).json({ status: err.message });

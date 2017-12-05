@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { QueryList, ViewChildren } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
 import { QuizService } from '../../../../services/quiz.service';
 import { AnswerComponent } from './answer/answer.component';
 

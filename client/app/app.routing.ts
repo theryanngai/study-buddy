@@ -6,6 +6,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { QuizCreatorComponent } from './components/quizzes/quiz-creator/quiz-creator.component';
 import { QuizCreationResultsComponent} from './components/quizzes/quiz-creator/quiz-creation-results/quiz-creation-results.component';
 import { QuizComponent } from './components/quizzes/quiz/quiz.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 const routes: Routes = [
   // {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'quiz/create', component: QuizCreatorComponent },
   { path: 'quiz/create/results', component: QuizCreationResultsComponent },
   { path: 'quiz/:quizId', component: QuizComponent },
+  { path: 'search-results', component: SearchResultsComponent },
 ];
 
 @NgModule({
@@ -30,6 +32,7 @@ export const routingComponents = [
   QuizCreatorComponent,
   QuizCreationResultsComponent,
   QuizComponent,
+  SearchResultsComponent,
 ];
 
 

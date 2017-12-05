@@ -1,8 +1,6 @@
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { QueryList, ViewChildren } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { Quiz } from '../../../models/quiz';
 import { QuizService } from '../../../services/quiz.service';
 import { QuestionComponent } from './question/question.component';
 

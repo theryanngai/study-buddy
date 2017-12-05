@@ -12,6 +12,7 @@ import { QuizComponent } from './components/quizzes/quiz/quiz.component';
 import { QuestionComponent } from './components/quizzes/quiz/question/question.component';
 import { AnswerComponent } from './components/quizzes/quiz/question/answer/answer.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 @NgModule({
   declarations: [ AppComponent, routingComponents,
@@ -22,7 +23,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     QuizComponent,
     QuestionComponent,
     AnswerComponent,
-    SearchBarComponent ],
+    SearchBarComponent,
+    SearchResultsComponent ],
   imports: [ BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, AppRoutingModule ],
   providers: [],
   bootstrap: [ AppComponent ]
