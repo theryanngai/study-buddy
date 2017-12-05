@@ -14,7 +14,6 @@ export class SearchResultsComponent {
 
   constructor(private _dashboardService: DashboardService, private route: ActivatedRoute) {
     route.params.subscribe(val => {
-      debugger;
       this.searchString = val['searchString'];
       this.search(this.searchString);
     });

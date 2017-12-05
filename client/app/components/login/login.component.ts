@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
         this._router.navigateByUrl('/dashboard');
       },
       (err) => {
-        debugger;
         this.errorMsg = err.error.status;
         this.successfulLogin = false;
         console.error(err);
