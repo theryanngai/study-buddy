@@ -4,8 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class AuthenticationService {
 
-  constructor(
-    private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   // logout() {
   //   localStorage.removeItem("user");
@@ -13,8 +12,15 @@ export class AuthenticationService {
   // }
 
   login(user){
+    const loginUrl = '/auth/login';
     console.log('Attempting to login', user.username);
-    return this.http.post('/auth/login', user);
+    return this.http.post(loginUrl, user);
+  }
+
+  logout() {
+    const logoutUrl = '/auth/logout';
+    console.log('Attempting to logout current user.');
+    return this.http.get(logoutUrl);
   }
 
   register(user) {

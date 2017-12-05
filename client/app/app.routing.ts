@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { LogoutComponent} from "./components/auth/logout/logout.component";
 import { RegisterComponent } from './components/register/register.component';
 import { QuizCreatorComponent } from './components/quizzes/quiz-creator/quiz-creator.component';
 import { QuizCreationResultsComponent} from './components/quizzes/quiz-creator/quiz-creation-results/quiz-creation-results.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
   // {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
   { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'quiz/create', component: QuizCreatorComponent },
   { path: 'quiz/create/results', component: QuizCreationResultsComponent },
@@ -28,6 +30,7 @@ export class AppRoutingModule {}
 export const routingComponents = [
   DashboardComponent,
   LoginComponent,
+  LogoutComponent,
   RegisterComponent,
   QuizCreatorComponent,
   QuizCreationResultsComponent,

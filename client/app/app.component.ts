@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
           <li><a>My Profile</a></li>
           <li><a routerLink="/quiz/create">Create A Quiz</a></li>
           <li><a><app-search-bar></app-search-bar></a></li>
-          <li><a>Placeholder</a></li>
+          <li><a routerLink="/logout">Logout</a></li>
         </ul>
       </div>
     </nav>
