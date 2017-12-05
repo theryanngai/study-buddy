@@ -7,7 +7,19 @@ import { AnswerCreatorComponent } from "./answer-creator/answer-creator.componen
 @Component({
   selector: 'question-creator',
   providers: [QuizService],
-  templateUrl: './question-creator.component.html',
+  template: `
+    <div class="form-group col s12">
+      <span><label for="questionText">Question #{{ questionNumber }}</label></span>
+      <input [(ngModel)]="questionText" id="questionText" name="questionText"
+             type="text" class="form-control">
+    </div>
+
+    <div *ngFor="let answer of answers;let i = index" [attr.data-index]="i">
+      <answer-creator [answerNumber]="i + 1"></answer-creator>
+    </div>
+
+    <button type="button" (click)="addAnswer()">Add Another Answer</button>
+  `,
   styleUrls: ['./question-creator.component.css']
 })
 

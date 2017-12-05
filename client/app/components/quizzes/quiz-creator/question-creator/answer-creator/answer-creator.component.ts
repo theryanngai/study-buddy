@@ -5,7 +5,17 @@ import { QuizService } from '../../../../../services/quiz.service';
 @Component({
   selector: 'answer-creator',
   providers: [QuizService],
-  templateUrl: './answer-creator.component.html',
+  template: `
+    <div class="answerComponent form-group col s12">
+      <span><label for="answerText">Answer #{{ answerNumber }}</label></span>
+      <input [(ngModel)]="answerText" id="answerText" name="answerText"
+             type="text" class="form-control">
+
+      <span><label for="isCorrect">Is this the correct answer?</label></span>
+      <input [checked]="isCorrect" id="isCorrect" name="isCorrect"
+             type="checkbox" class="form-control" (change)="isCorrect = !isCorrect">
+    </div>
+  `,
   styleUrls: ['./answer-creator.component.css']
 })
 

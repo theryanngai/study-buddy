@@ -5,7 +5,18 @@ import { AnswerComponent } from './answer/answer.component';
 
 @Component({
   selector: 'question',
-  templateUrl: './question.component.html',
+  template: `
+    <div class="container">
+      <h3>{{ questionNumber }}. {{ question.questionText }}</h3>
+      <div *ngFor="let answer of questionAnswers; let answerIdx = index" [attr.data-index]="answerIdx">
+        <span>
+          <input type="radio" (change)="onAnswerSelect(answer)"
+                 [value]="answerIdx" name="{{ answer.questionId }}">
+        </span>
+        <answer [answer]="answer"></answer>
+      </div>
+    </div>
+  `,
   styleUrls: ['./question.component.css']
 })
 

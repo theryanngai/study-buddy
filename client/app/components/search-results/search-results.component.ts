@@ -5,7 +5,16 @@ import { DashboardService } from '../../services/dashboard.service';
 @Component({
   selector: 'app-search-results',
   providers: [DashboardService],
-  templateUrl: './search-results.component.html',
+  template: `
+    <div class="container">
+      <h1>
+        Search Results for: "{{ searchString }}"
+      </h1>
+      <div *ngFor="let quiz of searchResults">
+        <a href="{{ '/quiz/' + quiz.id }}">{{ quiz.title }}</a>
+      </div>
+    </div>
+  `,
   styleUrls: ['./search-results.component.css']
 })
 export class SearchResultsComponent {
