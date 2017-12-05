@@ -1,7 +1,10 @@
-<h1>
-  Search Results for: "{{ searchString }}"
-</h1>
+<div class="container">
+  <h1>
+    Search Results for: "{{ searchString }}"
+  </h1>
 
-<h3>
-  {{ searchResults }}
-</h3>
+  <div *ngFor="let quiz of searchResults">
+    <a href="{{ '/quiz/' + quiz.id }}">{{ quiz.title }}</a>
+  </div>
+</div>
+
