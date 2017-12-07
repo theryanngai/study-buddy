@@ -5,6 +5,10 @@ function comparePass(userPassword, databasePassword) {
   return bcrypt.compareSync(userPassword, databasePassword);
 }
 
+function getCurrentUser(req, res) {
+  return req.user;
+}
+
 function createUser(req, res) {
   return handleErrors(req)
     .then(() => {
@@ -21,7 +25,7 @@ function createUser(req, res) {
         .returning('*');
     })
     .catch((err) => {
-      res.status(400).json({status: err.message});
+      res.status(400).json({ status: err.message });
     });
 }
 
@@ -42,8 +46,7 @@ function handleErrors(req) {
       reject({
         message: 'Username must be at least 3 characters',
       });
-    }
-    else if (req.body.password.length < 6) {
+    } else if (req.body.password.length < 6) {
       reject({
         message: 'Password must be longer than 5 characters',
       });

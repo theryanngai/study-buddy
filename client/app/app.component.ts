@@ -11,9 +11,11 @@ import { AuthenticationService } from './services/authentication.service';
           <li [hidden]="isAuthenticated"><a routerLink="/login">Login</a></li>
           <li [hidden]="isAuthenticated"><a routerLink="/register">Create an Account</a></li>
           <li [hidden]="!isAuthenticated"><a routerLink="/dashboard">Dashboard</a></li>
-          <li [hidden]="!isAuthenticated"><a>My Profile</a></li>
           <li [hidden]="!isAuthenticated"><a routerLink="/quiz/create">Create A Quiz</a></li>
           <li [hidden]="!isAuthenticated"><a><app-search-bar></app-search-bar></a></li>
+          <li [hidden]="!isAuthenticated">
+            <a>{{ currentUser.firstName }} {{ currentUser.lastName }}</a>
+          </li>
           <li [hidden]="!isAuthenticated"><a routerLink="/logout">Logout</a></li>
         </ul>
       </div>
@@ -28,18 +30,21 @@ export class AppComponent implements OnInit {
   constructor(private _authService: AuthenticationService) {};
   title = 'Study Buddy';
   isAuthenticated = false;
+  currentUser: any;
 
   ngOnInit() {
-    this._authService.checkLoginStatus()
+    this._authService.getCurrentUser()
       .subscribe(
         (response: any) => {
+          this.currentUser = response;
           this.isAuthenticated = true;
         },
         (err) => {
+          console.error('404', 'No currently logged in user was found.');
           this.isAuthenticated = false;
         },
         () => {
-          console.log('User login status check complete.');
+          console.log('Current User found.');
         }
       );
   }

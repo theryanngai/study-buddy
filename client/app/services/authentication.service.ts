@@ -6,10 +6,16 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) {}
 
-  checkLoginStatus(){
-    const userUrl = '/api/user';
+  getCurrentUser() {
+    const currentUserUrl = '/api/currentUser';
+    console.log('Retrieving current user.');
+    return this.http.get(currentUserUrl);
+  }
+
+  checkLoginStatus() {
+    const loginStatusUrl = '/api/user';
     console.log('Checking login status.');
-    return this.http.get(userUrl);
+    return this.http.get(loginStatusUrl);
   }
 
   login(user){
