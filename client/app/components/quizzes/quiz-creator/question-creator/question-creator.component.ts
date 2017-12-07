@@ -18,7 +18,7 @@ import { AnswerCreatorComponent } from "./answer-creator/answer-creator.componen
       <answer-creator [answerNumber]="i + 1"></answer-creator>
     </div>
 
-    <button class="answerComponent" type="button" (click)="addAnswer()">Add Another Answer</button>
+    <button class="btn btn-info btn-sm answerComponent" type="button" (click)="addAnswer()">Add Another Answer</button>
   `,
   styleUrls: ['./question-creator.component.css']
 })

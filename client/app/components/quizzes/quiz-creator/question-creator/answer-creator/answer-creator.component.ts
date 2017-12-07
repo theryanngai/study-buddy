@@ -9,9 +9,9 @@ import { QuizService } from '../../../../../services/quiz.service';
     <div class="answerComponent form-group col s12">
       <span><label for="answerText">Answer #{{ answerNumber }}</label></span>
       <input [(ngModel)]="answerText" id="answerText" name="answerText"
-             type="text" class="form-control">
+             type="text" class="form-control answerTextInput">
 
-      <span><label for="isCorrect">Is this the correct answer?</label></span>
+      <span><label for="isCorrect">Correct answer?</label></span>
       <input [checked]="isCorrect" id="isCorrect" name="isCorrect"
              type="checkbox" (change)="isCorrect = !isCorrect">
     </div>

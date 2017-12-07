@@ -1,3 +1,9 @@
 .answerComponent {
   margin-left: 40px;
 }
+
+.answerTextInput {
+  width: 50%;
+  display: inline-block;
+  margin-right: 10px;
+}
