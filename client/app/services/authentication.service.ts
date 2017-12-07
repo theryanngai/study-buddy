@@ -6,10 +6,11 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) {}
 
-  // logout() {
-  //   localStorage.removeItem("user");
-  //   this._router.navigate(['Login']);
-  // }
+  checkLoginStatus(){
+    const userUrl = '/api/user';
+    console.log('Checking login status.');
+    return this.http.get(userUrl);
+  }
 
   login(user){
     const loginUrl = '/auth/login';

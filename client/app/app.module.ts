@@ -14,6 +14,8 @@ import { AnswerComponent } from './components/quizzes/quiz/question/answer/answe
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { LogoutComponent } from './components/auth/logout/logout.component';
+import { AccessGuard } from './services/access-guard.service';
+import { AuthenticationService } from './services/authentication.service';
 
 @NgModule({
   declarations: [ AppComponent, routingComponents,
@@ -28,7 +30,7 @@ import { LogoutComponent } from './components/auth/logout/logout.component';
     SearchResultsComponent,
     LogoutComponent ],
   imports: [ BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, AppRoutingModule ],
-  providers: [],
+  providers: [ AccessGuard, AuthenticationService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
