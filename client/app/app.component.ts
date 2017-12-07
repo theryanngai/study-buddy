@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +8,13 @@ import { Component } from '@angular/core';
       <div class="container-fluid">
         <div class="navbar-header"><a class="navbar-brand" href="#">StudyBuddy</a></div>
         <ul class="nav navbar-nav">
-          <li><a routerLink="/dashboard">Dashboard</a></li>
-          <li><a routerLink="/login">Login</a></li>
-          <li><a routerLink="/register">Create an Account</a></li>
-          <li><a>My Profile</a></li>
-          <li><a routerLink="/quiz/create">Create A Quiz</a></li>
-          <li><a><app-search-bar></app-search-bar></a></li>
-          <li><a routerLink="/logout">Logout</a></li>
+          <li [hidden]="isAuthenticated"><a routerLink="/login">Login</a></li>
+          <li [hidden]="isAuthenticated"><a routerLink="/register">Create an Account</a></li>
+          <li [hidden]="!isAuthenticated"><a routerLink="/dashboard">Dashboard</a></li>
+          <li [hidden]="!isAuthenticated"><a>My Profile</a></li>
+          <li [hidden]="!isAuthenticated"><a routerLink="/quiz/create">Create A Quiz</a></li>
+          <li [hidden]="!isAuthenticated"><a><app-search-bar></app-search-bar></a></li>
+          <li [hidden]="!isAuthenticated"><a routerLink="/logout">Logout</a></li>
         </ul>
       </div>
     </nav>
@@ -23,6 +24,23 @@ import { Component } from '@angular/core';
   `,
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  constructor(private _authService: AuthenticationService) {};
   title = 'Study Buddy';
+  isAuthenticated = false;
+
+  ngOnInit() {
+    this._authService.checkLoginStatus()
+      .subscribe(
+        (response: any) => {
+          this.isAuthenticated = true;
+        },
+        (err) => {
+          this.isAuthenticated = false;
+        },
+        () => {
+          console.log('User login status check complete.');
+        }
+      );
+  }
 }

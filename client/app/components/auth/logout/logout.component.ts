@@ -19,7 +19,8 @@ export class LogoutComponent implements OnInit {
     this._authService.logout()
       .subscribe(
         (results: any) => {
-          this.resultsMessage = 'Thank you! You have successfully logged out of StudyBuddy.';
+          this.resultsMessage = 'Thank you! You have successfully logged out of StudyBuddy. Redirecting to login screen...';
+          setTimeout(function(){window.location.reload();}, 2000);
         },
         (err) => {
           this.resultsMessage = 'Something went wrong with your logout attempt! Please try again.';

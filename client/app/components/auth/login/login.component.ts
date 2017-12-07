@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
         this.successMsg = 'Successfully logged in as: ' + user.username;
         console.log('Logged in: ', user.username);
         this._router.navigateByUrl('/dashboard');
+        window.location.reload();
       },
       (err) => {
         this.errorMsg = err.error.status;
