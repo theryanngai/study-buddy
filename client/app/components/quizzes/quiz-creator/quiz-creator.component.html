@@ -8,9 +8,15 @@
     </div>
 
     <div class="form-group col s12">
-      <span><label for="description">Description</label></span>
-      <input [(ngModel)]="description" id="description" name="description"
-             type="text" class="form-control">
+    <span><label for="description">Description</label></span>
+    <input [(ngModel)]="description" id="description" name="description"
+           type="text" class="form-control">
+    </div>
+
+    <div class="form-group col s12">
+      <span><label for="isPublic">Make this Quiz public (Searchable)</label></span>
+      <input [(ngModel)]="isPublic" id="isPublic" name="isPublic"
+             type="checkbox" class="form-control" (change)="isPublic = !isPublic">
     </div>
 
     <div *ngFor="let question of quizQuestions;let i = index" [attr.data-index]="i">

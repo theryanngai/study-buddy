@@ -57,6 +57,7 @@ function createQuiz(req, res) {
         tags: req.body.tags,
         userId: req.user.id,
         description: req.body.description,
+        isPublic: req.body.isPublic,
       })
       .returning('*'))
     .catch((err) => {
@@ -98,6 +99,7 @@ function searchQuizzes(req, res) {
 
   return knex('quizzes')
     .where('title', 'ilike', '%' + searchString + '%')
+    .andWhere('isPublic', true)
     .returning('*')
     .catch((err) => {
       res.status(400).json({ status: err.message });

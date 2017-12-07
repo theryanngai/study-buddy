@@ -23,7 +23,7 @@ export class AnswerCreatorComponent {
   @Input() answerNumber: number;
   @Input() answerText: string;
   @Input() answerType: string;
-  @Input() isCorrect: boolean = false;
+  @Input() isCorrect: false;
   answer: any;
 
   constructor(private _quizService: QuizService) {};

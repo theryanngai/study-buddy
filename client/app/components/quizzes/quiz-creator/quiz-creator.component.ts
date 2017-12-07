@@ -19,10 +19,13 @@ export class QuizCreatorComponent {
   quizId: number;
   isCreationComplete: boolean = false;
   quizQuestions: any = [0];
+  isPublic: false;
+
 
   constructor(private _quizService: QuizService) {}
 
   submit(quizDetails) {
+    debugger;
     this.quiz = new Quiz(quizDetails);
     this._quizService.createQuiz(this.quiz)
       .subscribe(
