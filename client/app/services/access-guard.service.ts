@@ -18,12 +18,13 @@ export class AccessGuard implements CanActivate {
           },
           (err) => {
             this._router.navigateByUrl('/login');
+            return false;
           },
           () => {
             console.log('User login status check complete.');
           }
         );
-      return true;
     }
+    return true;
   }
 }
