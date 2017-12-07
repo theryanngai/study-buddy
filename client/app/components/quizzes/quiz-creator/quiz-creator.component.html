@@ -16,7 +16,7 @@
     <div class="form-group col s12">
       <span><label for="isPublic">Make this Quiz public (Searchable)</label></span>
       <input [(ngModel)]="isPublic" id="isPublic" name="isPublic"
-             type="checkbox" class="form-control" (change)="isPublic = !isPublic">
+             type="checkbox" (change)="isPublic = !isPublic">
     </div>
 
     <div *ngFor="let question of quizQuestions;let i = index" [attr.data-index]="i">

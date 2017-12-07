@@ -13,7 +13,7 @@ import { QuizService } from '../../../../../services/quiz.service';
 
       <span><label for="isCorrect">Is this the correct answer?</label></span>
       <input [checked]="isCorrect" id="isCorrect" name="isCorrect"
-             type="checkbox" class="form-control" (change)="isCorrect = !isCorrect">
+             type="checkbox" (change)="isCorrect = !isCorrect">
     </div>
   `,
   styleUrls: ['./answer-creator.component.css']
