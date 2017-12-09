@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.table('quizzes', function(t) {
+  return knex.schema.table('answers', function(t) {
     t.dropColumn('isCorrect');
   });
 };

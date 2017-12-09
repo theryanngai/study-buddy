@@ -10,10 +10,6 @@ ul {
 
 .user-details {
   font-size: 14px;
-
-  li {
-    margin: 20px;
-  }
 }
 
 .profile-patch-failure {
@@ -23,3 +19,4 @@ ul {
 .profile-patch-success {
   color: green;
 }
+

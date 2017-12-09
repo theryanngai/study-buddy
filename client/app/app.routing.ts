@@ -9,6 +9,7 @@ import { QuizCreationResultsComponent} from './components/quizzes/quiz-creator/q
 import { QuizComponent } from './components/quizzes/quiz/quiz.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { FriendsComponent } from './components/user-profile/friends/friends.component';
 import { AccessGuard } from './services/access-guard.service';
 
 const routes: Routes = [
@@ -31,6 +32,10 @@ const routes: Routes = [
     canActivate: [ AccessGuard ] },
   { path: 'user-profile/:userId',
     component: UserProfileComponent,
+    data: { requiresLogin: true },
+    canActivate: [ AccessGuard ] },
+  { path: 'my-friends',
+    component: FriendsComponent,
     data: { requiresLogin: true },
     canActivate: [ AccessGuard ] },
   { path: 'quiz/create',

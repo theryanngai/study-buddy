@@ -6,7 +6,7 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-  return knex.schema.table('quizzes', (table) => {
+  return knex.schema.table('users', (table) => {
     table.dropColumn('aboutMe');
     table.dropColumn('profilePicture');
   });

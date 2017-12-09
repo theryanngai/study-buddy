@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>{{ firstName }}'s Friends</h1>
+  <div class="find-friends-container">
+    <form #formCtrl="ngForm">
+      <input type="text" placeholder="Find username"
+             [(ngModel)]="userSearchString"
+             name="userSearchString"
+             #userSearchInput
+             required />
+      <button [disabled]="userSearchString === ''" type="btn" (click)="search(userSearchInput.value)">Go!</button>
+    </form>
+
+    <div class="user-search-results">
+      <ul>
+        <li *ngFor="let user of userSearchResults">
+          <a routerLink="{{ '//user-profile/' + user.id }}" >{{ user.username }}</a>
+          <button class="add-friend-button" type="btn btn-sm" (click)="addFriend(user)">Add Friend</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+

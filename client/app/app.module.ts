@@ -17,6 +17,7 @@ import { LogoutComponent } from './components/auth/logout/logout.component';
 import { AccessGuard } from './services/access-guard.service';
 import { AuthenticationService } from './services/authentication.service';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { FriendsComponent } from './components/user-profile/friends/friends.component';
 
 @NgModule({
   declarations: [ AppComponent, routingComponents,
@@ -30,7 +31,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     SearchBarComponent,
     SearchResultsComponent,
     LogoutComponent,
-    UserProfileComponent ],
+    UserProfileComponent,
+    FriendsComponent ],
   imports: [ BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, AppRoutingModule ],
   providers: [ AccessGuard, AuthenticationService ],
   bootstrap: [ AppComponent ]

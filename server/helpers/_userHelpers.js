@@ -10,6 +10,17 @@ function getUserById(req, res) {
     });
 }
 
+function searchUsers(req, res) {
+  const targetUsername = req.params.username;
+
+  return knex('users')
+    .where('username', 'ilike', `%${targetUsername}%`)
+    .returning('*')
+    .catch((err) => {
+      res.status(400).json({ status: err.message });
+    });
+}
+
 function patchUserById(req, res) {
   const userId = req.user.id;
   const email = req.body.email;
@@ -18,7 +29,7 @@ function patchUserById(req, res) {
 
   return knex('users')
     .where('id', userId)
-    .update({ email: email, aboutMe: aboutMeUpdate, profilePicture: profilePictureUpdate })
+    .update({ email, aboutMe: aboutMeUpdate, profilePicture: profilePictureUpdate })
     .returning('*')
     .catch((err) => {
       res.status(400).json({ status: err.message });
@@ -27,5 +38,6 @@ function patchUserById(req, res) {
 
 module.exports = {
   getUserById,
+  searchUsers,
   patchUserById,
 };

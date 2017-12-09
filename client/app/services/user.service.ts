@@ -6,6 +6,12 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+  searchUsers(searchString) {
+    const userSearchUrl = '/api/user-search/' + searchString;
+    console.log('Attempting to find users using keyword(s): ', searchString);
+    return this.http.get(userSearchUrl);
+  }
+
   getUserById(userId) {
     const getUserByIdUrl = '/api/user/' + userId;
     console.log('Retrieving user with ID: ', userId);

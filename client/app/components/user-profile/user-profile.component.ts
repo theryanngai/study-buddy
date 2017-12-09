@@ -18,9 +18,6 @@ export class UserProfileComponent implements OnInit {
   public isUpdateSuccessful: boolean;
   public isSubmitted: boolean;
 
-
-
-
   constructor(private _userService: UserService, private route: ActivatedRoute) { }
 
   getUserDetails(userId) {
