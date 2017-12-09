@@ -1,0 +1,56 @@
+<h1>
+  {{ user.firstName }} {{ user.lastName }}
+</h1>
+<h3>
+  {{ user.username }}
+</h3>
+<br>
+<ul class="user-details">
+  <li >
+    <span class="user-detail-label">E-mail: </span>
+    <span [hidden]="isEditingEmail">
+      {{ user.email }}
+      <button class="btn btn-primary btn-sm"
+              (click)="isEditingEmail = !isEditingEmail">
+        Edit E-mail
+      </button>
+    </span>
+    <span [hidden]="!isEditingEmail">
+      <input [(ngModel)]="user.email" type="text" placeholder="{{ user.email }}">
+      <button class="btn btn-primary btn-sm"
+              (click)="isEditingEmail = !isEditingEmail;">
+        I'm done editing!
+      </button>
+    </span>
+  </li>
+  <li>
+    <span class="user-detail-label">About Me: </span>
+    <span [hidden]="isEditingAboutMe">
+      {{ user.aboutMe }}
+      <button class="btn btn-primary btn-sm"
+              (click)="isEditingAboutMe = !isEditingAboutMe">
+        Edit E-mail
+      </button>
+    </span>
+    <span [hidden]="!isEditingAboutMe">
+      <input [(ngModel)]="user.aboutMe" type="text" placeholder="{{ user.aboutMe }}">
+      <button class="btn btn-primary btn-sm"
+              (click)="isEditingAboutMe = !isEditingAboutMe;">
+        I'm done editing!
+      </button>
+    </span>
+  </li>
+  <li>
+    <span class="user-detail-label">Profile Picture: </span>
+    <img src="{{ user.profilePicture }}" alt="User Profile Image">
+    <button class="btn btn-primary btn-sm">Upload New Profile Picture (Coming Soon)</button>
+  </li>
+  <br>
+  <button class="btn btn-primary btn-lg" (click)="saveUser()">Save Profile Changes</button>
+  <div [hidden]="!isSubmitted || (isSubmitted && isUpdateSuccessful === false)" class="profile-patch-success">
+    {{ successMessage }}
+  </div>
+  <div [hidden]="!isSubmitted || (isSubmitted && isUpdateSuccessful === true)" class="profile-patch-failure">
+    {{ failureMessage}}
+  </div>
+</ul>

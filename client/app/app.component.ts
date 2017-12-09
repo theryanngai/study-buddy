@@ -14,7 +14,9 @@ import { AuthenticationService } from './services/authentication.service';
           <li [hidden]="!isAuthenticated"><a routerLink="/quiz/create">Create A Quiz</a></li>
           <li [hidden]="!isAuthenticated"><a><app-search-bar></app-search-bar></a></li>
           <li [hidden]="!isAuthenticated">
-            <a>{{ currentUser.firstName }} {{ currentUser.lastName }}</a>
+            <a routerLink="/user-profile/{{ currentUser.id }}" >
+              {{ currentUser.firstName }} {{ currentUser.lastName }}
+            </a>
           </li>
           <li [hidden]="!isAuthenticated"><a routerLink="/logout">Logout</a></li>
         </ul>
@@ -30,7 +32,7 @@ export class AppComponent implements OnInit {
   constructor(private _authService: AuthenticationService) {};
   title = 'Study Buddy';
   isAuthenticated = false;
-  currentUser: any;
+  currentUser: any = {};
 
   ngOnInit() {
     this._authService.getCurrentUser()

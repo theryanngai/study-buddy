@@ -10,7 +10,7 @@ function getCurrentUser(req, res) {
 }
 
 function createUser(req, res) {
-  return handleErrors(req)
+  return handleUserCreationErrors(req)
     .then(() => {
       const salt = bcrypt.genSaltSync();
       const hash = bcrypt.hashSync(req.body.password, salt);
@@ -29,7 +29,6 @@ function createUser(req, res) {
     });
 }
 
-
 function loginRequired(req, res, next) {
   if (!req.user) return res.status(401).json({ status: 'Please log in' });
   return next();
@@ -40,7 +39,7 @@ function loginRedirect(req, res, next) {
   return next();
 }
 
-function handleErrors(req) {
+function handleUserCreationErrors(req) {
   return new Promise((resolve, reject) => {
     if (req.body.username.length < 3) {
       reject({
@@ -61,4 +60,5 @@ module.exports = {
   createUser,
   loginRequired,
   loginRedirect,
+  getCurrentUser,
 };

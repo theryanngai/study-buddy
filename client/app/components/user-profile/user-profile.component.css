@@ -1,0 +1,25 @@
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-detail-label {
+  font-weight: bold;
+}
+
+.user-details {
+  font-size: 14px;
+
+  li {
+    margin: 20px;
+  }
+}
+
+.profile-patch-failure {
+  color: red;
+}
+
+.profile-patch-success {
+  color: green;
+}

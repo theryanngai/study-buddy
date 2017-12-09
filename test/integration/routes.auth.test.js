@@ -176,14 +176,14 @@ describe('routes : auth', () => {
     });
   });
 
-  describe('GET /user', () => {
+  describe('GET /loginCheck', () => {
     it('should return a success', (done) => {
       passportStub.login({
         username: 'jeremy',
         password: 'johnson123',
       });
       chai.request(server)
-        .get('/api/user')
+        .get('/api/loginCheck')
         .end((err, res) => {
           should.not.exist(err);
           res.redirects.length.should.eql(0);
@@ -196,7 +196,7 @@ describe('routes : auth', () => {
 
     it('should throw an error if a user is not logged in', (done) => {
       chai.request(server)
-        .get('/api/user')
+        .get('/api/loginCheck')
         .end((err, res) => {
           should.exist(res.error);
           res.redirects.length.should.eql(0);

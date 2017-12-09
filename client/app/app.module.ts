@@ -16,6 +16,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { LogoutComponent } from './components/auth/logout/logout.component';
 import { AccessGuard } from './services/access-guard.service';
 import { AuthenticationService } from './services/authentication.service';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [ AppComponent, routingComponents,
@@ -28,7 +29,8 @@ import { AuthenticationService } from './services/authentication.service';
     AnswerComponent,
     SearchBarComponent,
     SearchResultsComponent,
-    LogoutComponent ],
+    LogoutComponent,
+    UserProfileComponent ],
   imports: [ BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, AppRoutingModule ],
   providers: [ AccessGuard, AuthenticationService ],
   bootstrap: [ AppComponent ]
