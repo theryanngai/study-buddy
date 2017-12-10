@@ -30,7 +30,7 @@ import { Score } from '../../../models/score';
         </h3>
       </form>
     </div>
-    <app-quiz-rater [hidden]="!isScoringComplete"></app-quiz-rater>
+    <app-quiz-rater [hidden]="!isScoringComplete && !showQuizScoreHistory"></app-quiz-rater>
     <app-quiz-scores (backToQuiz)="showQuizScoreHistory=false" *ngIf="showQuizScoreHistory" [quiz]="quiz">
     </app-quiz-scores>
   `,
