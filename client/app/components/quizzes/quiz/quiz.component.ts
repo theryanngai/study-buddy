@@ -13,7 +13,7 @@ import { Score } from '../../../models/score';
   providers: [QuizService],
   template: `
     <div [hidden]="showQuizScoreHistory" class="container">
-      <h1>{{ quiz.title }}</h1>
+      <h1 class="quiz-title">{{ quiz.title }}</h1>
       <h3 [hidden]="!submitted">{{ quizResultsText }}</h3>
       <form #quizForm="ngForm" (ngSubmit)="submit()">
         <div *ngFor="let question of quizQuestions; let i = index" [attr.data-index]="i">

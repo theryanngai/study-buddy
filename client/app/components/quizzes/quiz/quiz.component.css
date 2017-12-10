@@ -1,3 +1,7 @@
 .quiz-submit-btn {
   margin: 20px;
 }
+
+.quiz-title {
+  text-decoration: underline;
+}
