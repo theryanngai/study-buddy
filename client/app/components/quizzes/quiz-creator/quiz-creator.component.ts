@@ -15,16 +15,18 @@ export class QuizCreatorComponent {
   @ViewChildren(QuestionCreatorComponent)
     private viewChildren: QueryList<QuestionCreatorComponent>;
 
+  isPublic = false;
   quiz: any;
   quizId: number;
-  isCreationComplete: boolean = false;
+  isCreationComplete = false;
   quizQuestions: any = [0];
 
   constructor(private _quizService: QuizService) {}
 
   submit(quizDetails) {
+    quizDetails.tags = this.processTags(quizDetails.tagString);
     this.quiz = new Quiz(quizDetails);
-    this._quizService.createQuiz(this.quiz)
+    return this._quizService.createQuiz(this.quiz)
       .subscribe(
         (response: any) => {
           this.viewChildren.forEach((questionComponent) => {
@@ -42,6 +44,10 @@ export class QuizCreatorComponent {
               console.log('Quiz Creation Success!');
             }
       );
+  }
+
+  processTags(tagString) {
+    return tagString.split(",").map(item => item.trim());
   }
 
   addQuestion() {

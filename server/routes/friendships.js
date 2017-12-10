@@ -11,7 +11,7 @@ router.post('/create', _authHelpers.loginRequired, (req, res, next) => _friendsh
     err => handleResponse(res, 500, 'error'),
   ));
 
-router.get('/getFriendsByUserId/:id', _authHelpers.loginRequired, (req, res, next) => _friendshipHelpers.getFriendsByUserId(req, res)
+router.get('/getFriendshipsByUserId/:id', _authHelpers.loginRequired, (req, res, next) => _friendshipHelpers.getFriendshipsByUserId(req, res)
   .then(
     (response) => {
       if (!response) return next(new Error("failed to find the user's friends"));

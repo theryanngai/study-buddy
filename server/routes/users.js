@@ -15,6 +15,13 @@ router.get('/user/:id', _authHelpers.loginRequired, (req, res, next) => _userHel
     err => handleResponse(res, 500, 'error'),
   ));
 
+router.get('/users', _authHelpers.loginRequired, (req, res, next) => _userHelpers.getUsersByIds(req, res)
+  .then(
+    response => res.send(response),
+    err => handleResponse(res, 500, 'error'),
+  ));
+
+
 router.get('/user-search/:username', _authHelpers.loginRequired, (req, res, next) => _userHelpers.searchUsers(req, res)
   .then(
     response => res.send(response),

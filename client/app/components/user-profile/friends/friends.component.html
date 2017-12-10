@@ -1,6 +1,14 @@
 <div class="container">
   <h1>{{ firstName }}'s Friends</h1>
+  <div class="user-friends-container">
+    <ul>
+      <li *ngFor="let friend of friendList">
+        <a routerLink="{{ '//user-profile/' + friend.id }}" >{{ friend.username }}</a>
+      </li>
+    </ul>
+  </div>
   <div class="find-friends-container">
+    <h3>Find new friends!</h3>
     <form #formCtrl="ngForm">
       <input type="text" placeholder="Find username"
              [(ngModel)]="userSearchString"

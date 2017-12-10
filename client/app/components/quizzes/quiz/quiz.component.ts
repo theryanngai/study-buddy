@@ -6,7 +6,7 @@ import { QuestionComponent } from './question/question.component';
 
 
 @Component({
-  selector: 'quiz',
+  selector: 'app-quiz',
   providers: [QuizService],
   template: `
     <div class="container">

@@ -4,9 +4,12 @@ ul {
   margin: 0;
 }
 .find-friends-container {
+  margin: 20px;
+  padding: 10px;
   border-style: solid;
   border-color: black;
   border-width: thin;
   width: 200px;
   height: 200px;
+  display: inline-block;
 }

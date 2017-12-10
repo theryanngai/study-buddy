@@ -19,11 +19,23 @@ function createFriendship(req, res) {
     });
 }
 
-function getFriendsByUserId(req, res) {
-
+function getFriendshipsByUserId(req, res) {
+  const userId = req.params.id;
+  return knex('friendships')
+    .select('userid1 as friend')
+    .where('userid2', parseInt(userId))
+    .union(function () {
+      this.select('userid2 as friend')
+        .from('friendships')
+        .where('userid1', parseInt(userId));
+    })
+    .returning('friend')
+    .catch((err) => {
+      res.status(400).json({ status: err.message });
+    });
 }
 
 module.exports = {
   createFriendship,
-  getFriendsByuserId,
+  getFriendshipsByUserId,
 };

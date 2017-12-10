@@ -6,6 +6,11 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+  parameterizeArray = (key, arr) => {
+    arr = arr.map(encodeURIComponent);
+    return `?${key}[]=${arr.join(`&${key}[]=`)}`;
+  };
+
   searchUsers(searchString) {
     const userSearchUrl = '/api/user-search/' + searchString;
     console.log('Attempting to find users using keyword(s): ', searchString);
@@ -15,7 +20,14 @@ export class UserService {
   getUserById(userId) {
     const getUserByIdUrl = '/api/user/' + userId;
     console.log('Retrieving user with ID: ', userId);
-    return this.http.get(getUserByIdUrl, userId);
+    return this.http.get(getUserByIdUrl);
+  }
+
+  getUsersByIds(userIds) {
+    const userIdsQueryString = this.parameterizeArray('friendIds', userIds);
+    const getUsersByIdsUrl = '/api/users/' + userIdsQueryString;
+    console.log('Retrieveing users details for these ids: ', userIds);
+    return this.http.get(getUsersByIdsUrl);
   }
 
   patchUser(userDetails) {

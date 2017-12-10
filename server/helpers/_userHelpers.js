@@ -10,6 +10,17 @@ function getUserById(req, res) {
     });
 }
 
+function getUsersByIds(req, res) {
+  const userIds = req.query.friendIds;
+
+  return knex('users')
+    .whereIn('id', userIds)
+    .returning('*')
+    .catch((err) => {
+      res.status(400).json({ status: err.message });
+    });
+}
+
 function searchUsers(req, res) {
   const targetUsername = req.params.username;
 
@@ -38,6 +49,7 @@ function patchUserById(req, res) {
 
 module.exports = {
   getUserById,
+  getUsersByIds,
   searchUsers,
   patchUserById,
 };

@@ -11,6 +11,7 @@ import { FriendshipService } from '../../../services/friendship.service';
 })
 export class FriendsComponent implements OnInit {
   firstName: string;
+  currentUser: any;
   userSearchString = '';
   userSearchResults: Array<any> = [];
   friendList: Array<any> = [];
@@ -18,23 +19,42 @@ export class FriendsComponent implements OnInit {
               private _authService: AuthenticationService,
               private _friendService: FriendshipService) {}
 
-  ngOnInit() {
-    this._authService.getCurrentUser()
+  getUserFriends(userId) {
+    return this._friendService.getFriendshipsByUserId(userId)
       .subscribe(
         (response: any) => {
-          this.firstName = response.firstName;
+          const friendIds = [];
+          console.log('Found Friends: ', response);
+          response.forEach(friendObject => friendIds.push(friendObject.friend));
+          this.getFriendDetailsByIds(friendIds);
         },
         (err) => {
-          console.error('404', 'No currently logged in user was found.');
+          console.error(err);
         },
         () => {
-          console.log('Current User found.');
+          console.log('Friend Retrieval Successful!');
+        }
+      );
+  }
+
+  getFriendDetailsByIds(userIds) {
+    return this._userService.getUsersByIds(userIds)
+      .subscribe(
+        (response: any) => {
+          console.log('Found friend details: ', response);
+          this.friendList = response;
+        },
+        (err) => {
+          console.error(err);
+        },
+        () => {
+          console.log('Friend Details Retrieval Successful!');
         }
       );
   }
 
   addFriend(friendCandidate) {
-    this._friendService.createFriendship(friendCandidate)
+    return this._friendService.createFriendship(friendCandidate)
       .subscribe(
         (response: any) => {
           console.log('Added Friend: ', response.username);
@@ -50,7 +70,7 @@ export class FriendsComponent implements OnInit {
   }
 
   search(searchString) {
-    this._userService.searchUsers(searchString)
+    return this._userService.searchUsers(searchString)
       .subscribe(
         (response: any) => {
           if (response) {
@@ -64,6 +84,23 @@ export class FriendsComponent implements OnInit {
           console.error(err);
         },
         () => console.log('User Search Attempt Complete.'),
+      );
+  }
+
+  ngOnInit() {
+    this._authService.getCurrentUser()
+      .subscribe(
+        (response: any) => {
+          this.currentUser = response;
+          this.firstName = this.currentUser.firstName;
+          this.getUserFriends(this.currentUser.id);
+        },
+        (err) => {
+          console.error('404', 'No currently logged in user was found.');
+        },
+        () => {
+          console.log('Current User found.');
+        }
       );
   }
 
