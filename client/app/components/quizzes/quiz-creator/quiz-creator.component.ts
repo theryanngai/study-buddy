@@ -53,8 +53,4 @@ export class QuizCreatorComponent {
   addQuestion() {
     this.quizQuestions.push(0);
   }
-
-  // isCreationComplete() {
-  //   false;
-  // }
 }

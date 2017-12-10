@@ -8,6 +8,8 @@ import { AnswerComponent } from './answer/answer.component';
   template: `
     <div class="container">
       <h3>{{ questionNumber }}. {{ question.questionText }}</h3>
+      <h5 [ngClass]="{'correct-text': resultText === 'Correct', 'incorrect-text': resultText === 'Incorrect'}" 
+          [hidden]="!isQuizSubmitted">{{ resultText }}</h5>
       <div *ngFor="let answer of questionAnswers; let answerIdx = index" [attr.data-index]="answerIdx">
         <span>
           <input type="radio" (change)="onAnswerSelect(answer)"
@@ -28,7 +30,9 @@ export class QuestionComponent implements OnInit {
   questionAnswers: any = [];
   quizId: number;
   selectedAnswer: number;
-  isQuestionSolved: boolean = false;
+  isQuestionSolved: Boolean = false;
+  isQuizSubmitted: Boolean = false;
+  resultText: string;
 
   constructor(private _quizService: QuizService) {}
 
@@ -48,6 +52,11 @@ export class QuestionComponent implements OnInit {
         },
         () => console.log('Answer Retrieval Attempt Complete.'),
       );
+  }
+
+  showResults() {
+    this.resultText = this.isQuestionSolved ? 'Correct' : 'Incorrect';
+    this.isQuizSubmitted = true;
   }
 
   onAnswerSelect(answer) {

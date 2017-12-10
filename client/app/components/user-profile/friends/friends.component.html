@@ -15,14 +15,23 @@
              name="userSearchString"
              #userSearchInput
              required />
-      <button [disabled]="userSearchString === ''" type="btn" (click)="search(userSearchInput.value)">Go!</button>
+      <button [disabled]="userSearchString === ''" type="btn"
+              (click)="search(userSearchInput.value)">Go!</button>
     </form>
 
     <div class="user-search-results">
       <ul>
         <li *ngFor="let user of userSearchResults">
           <a routerLink="{{ '//user-profile/' + user.id }}" >{{ user.username }}</a>
-          <button class="add-friend-button" type="btn btn-sm" (click)="addFriend(user)">Add Friend</button>
+          <span [hidden]="!user.added"
+                class="add-friend-success-text">
+            {{ addFriendSuccessText }}
+          </span>
+          <button class="add-friend-button"
+                  type="btn btn-sm"
+                  (click)="addFriend(user)">
+            Add Friend
+          </button>
         </li>
       </ul>
     </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './services/authentication.service';
+import { SharedSessionsService} from "./services/sessions.service";
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ import { AuthenticationService } from './services/authentication.service';
           <li [hidden]="!isAuthenticated"><a routerLink="/dashboard">Dashboard</a></li>
           <li [hidden]="!isAuthenticated"><a routerLink="/quiz/create">Create A Quiz</a></li>
           <li [hidden]="!isAuthenticated"><a><app-search-bar></app-search-bar></a></li>
+          <li [hidden]="!isAuthenticated"><a routerLink="/my-friends">My Friends</a></li>
           <li [hidden]="!isAuthenticated">
             <a routerLink="/user-profile/{{ currentUser.id }}" >
               {{ currentUser.firstName }} {{ currentUser.lastName }}
@@ -29,7 +31,8 @@ import { AuthenticationService } from './services/authentication.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private _authService: AuthenticationService) {};
+  constructor(private _authService: AuthenticationService,
+              private _sessionsService: SharedSessionsService) {};
   title = 'Study Buddy';
   isAuthenticated = false;
   currentUser: any = {};
@@ -38,7 +41,8 @@ export class AppComponent implements OnInit {
     this._authService.getCurrentUser()
       .subscribe(
         (response: any) => {
-          this.currentUser = response;
+          this._sessionsService.setCurrentUser(response);
+          this.currentUser = this._sessionsService.currentUser;
           this.isAuthenticated = true;
         },
         (err) => {

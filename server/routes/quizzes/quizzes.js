@@ -4,13 +4,24 @@ const quizRouter = express.Router();
 
 const _authHelpers = require('../../auth/_helpers');
 const _quizHelpers = require('../../helpers/_quizHelpers');
+const _scoreHelpers = require('../../helpers/_scoreHelpers');
 const questionRouter = require('./questions.js');
 
 quizRouter.use('/:quizId/questions', questionRouter);
 
-// uncomment and add in loginRedirect once session is being properly persisted
-// quizRouter.post('/create', _authHelpers.loginRedirect, (req, res, next) => {
+function handleResponse(res, code, statusMsg) {
+  res.status(code).json({ status: statusMsg });
+}
+
+// Creates a new quiz
 quizRouter.post('/create', _authHelpers.loginRequired, (req, res, next) => _quizHelpers.createQuiz(req, res)
+  .then(
+    response => res.send(response[0]),
+    err => handleResponse(res, 500, 'error'),
+  ));
+
+// Creates a score for a quiz & user after a quiz is taken
+quizRouter.post('/:quizId/score/create', _authHelpers.loginRequired, (req, res, next) => _scoreHelpers.createScore(req, res)
   .then(
     response => res.send(response[0]),
     err => handleResponse(res, 500, 'error'),
@@ -27,10 +38,7 @@ quizRouter.get('/myQuizzes', _authHelpers.loginRequired, (req, res, next) => _qu
     err => handleResponse(res, 500, 'error'),
   ));
 
-function handleResponse(res, code, statusMsg) {
-  res.status(code).json({ status: statusMsg });
-}
-
+// Returns details for a quiz, specified by id
 quizRouter.get('/:quizId', _authHelpers.loginRequired, (req, res, next) => _quizHelpers.getQuizById(req, res)
   .then(
     (response) => {
@@ -50,7 +58,6 @@ quizRouter.get('/search/:searchString', _authHelpers.loginRequired, (req, res, n
   .then(
     (response) => {
       res.send(response);
-      next();
     },
     err => handleResponse(res, 500, 'error'),
   ));

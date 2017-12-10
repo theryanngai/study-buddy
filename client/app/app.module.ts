@@ -18,6 +18,7 @@ import { AccessGuard } from './services/access-guard.service';
 import { AuthenticationService } from './services/authentication.service';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { FriendsComponent } from './components/user-profile/friends/friends.component';
+import { SharedSessionsService } from './services/sessions.service';
 
 @NgModule({
   declarations: [ AppComponent, routingComponents,
@@ -34,7 +35,7 @@ import { FriendsComponent } from './components/user-profile/friends/friends.comp
     UserProfileComponent,
     FriendsComponent ],
   imports: [ BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, AppRoutingModule ],
-  providers: [ AccessGuard, AuthenticationService ],
-  bootstrap: [ AppComponent ]
+  providers: [ AccessGuard, AuthenticationService, SharedSessionsService ],
+  bootstrap: [ AppComponent ],
 })
 export class AppModule { }

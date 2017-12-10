@@ -47,6 +47,10 @@ function patchUserById(req, res) {
     });
 }
 
+function getScoresByUser(req, res) {
+  //code!
+}
+
 module.exports = {
   getUserById,
   getUsersByIds,

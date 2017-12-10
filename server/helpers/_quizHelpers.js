@@ -99,6 +99,11 @@ function searchQuizzes(req, res) {
 
   return knex('quizzes')
     .where('title', 'ilike', '%' + searchString + '%')
+    .union(function () {
+      this.select('*')
+        .from('quizzes')
+        .whereRaw("tags && '{" + searchString + "}'::text[]");
+    })
     .andWhere('isPublic', true)
     .returning('*')
     .catch((err) => {

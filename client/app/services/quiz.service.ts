@@ -30,6 +30,13 @@ export class QuizService {
     return this.http.post(createAnswerUrl, answer);
   }
 
+  // Create a score after a quiz attempt has been completed
+  createScore(score) {
+    const createScoreUrl = '/api/quizzes/' + score.quizId + '/score/create'
+    console.log('Attempting to create score for QuizId: ', score.quizId);
+    return this.http.post(createScoreUrl, score);
+  }
+
   getQuizById(quizId) {
     const getQuizByIdUrl = '/api/quizzes/' + quizId;
     console.log('Attempting to retrieve QuizID: ', quizId);

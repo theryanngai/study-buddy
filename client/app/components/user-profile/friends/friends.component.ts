@@ -14,6 +14,7 @@ export class FriendsComponent implements OnInit {
   currentUser: any;
   userSearchString = '';
   userSearchResults: Array<any> = [];
+  addFriendSuccessText: 'Added to Friends!';
   friendList: Array<any> = [];
   constructor(private _userService: UserService,
               private _authService: AuthenticationService,
@@ -57,8 +58,9 @@ export class FriendsComponent implements OnInit {
     return this._friendService.createFriendship(friendCandidate)
       .subscribe(
         (response: any) => {
-          console.log('Added Friend: ', response.username);
-          this.friendList.push(response);
+          console.log('Added Friend ', friendCandidate.username);
+          this.updateFriendList(friendCandidate, 'add');
+          this.updateSearchList(friendCandidate, 'remove');
         },
         (err) => {
           console.error(err);
@@ -67,6 +69,31 @@ export class FriendsComponent implements OnInit {
           console.log('Friendship Creation Successful!');
         }
       );
+  }
+
+  updateFriendList(newFriend: any, action: string) {
+    if (action === 'add') {
+      this.friendList.push(newFriend);
+    } else if (action === 'remove') {
+      // do stuff
+    } else {
+      throw 'Invalid action. Cannot update friend list!';
+    }
+
+    return this.friendList;
+  }
+
+  updateSearchList(newFriend: any, action: string) {
+    if (action === 'add') {
+      // do stuff
+    } else if (action === 'remove') {
+      const index = this.userSearchResults.findIndex(user => user.id === newFriend.id);
+      this.userSearchResults.splice(index, 1);
+    } else {
+      throw 'Invalid action. Cannot update search list!';
+    }
+
+    return this.userSearchResults;
   }
 
   search(searchString) {
