@@ -22,10 +22,13 @@ import { Score } from '../../../models/score';
         <button [disabled]="submitted" type="submit" class="btn btn-primary quiz-submit-btn">
           Submit
         </button>
-        <a (click)="showQuizScoreHistory = true">View your performance on this Quiz</a>
+        <div>
+          <a (click)="showQuizScoreHistory = true">View your performance on this Quiz</a>
+        </div>
       </form>
     </div>
-    <app-quiz-scores *ngIf="showQuizScoreHistory" [quiz]="quiz"></app-quiz-scores>
+    <app-quiz-scores (backToQuiz)="showQuizScoreHistory=false" *ngIf="showQuizScoreHistory" [quiz]="quiz">
+    </app-quiz-scores>
   `,
   styleUrls: ['./quiz.component.css']
 })
