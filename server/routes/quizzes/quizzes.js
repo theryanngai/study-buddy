@@ -49,6 +49,16 @@ quizRouter.get('/:quizId', _authHelpers.loginRequired, (req, res, next) => _quiz
     err => handleResponse(res, 500, 'error'),
   ));
 
+quizRouter.get('/:quizId/myScores', _authHelpers.loginRequired, (req, res, next) => _quizHelpers.getQuizScoresByUserId(req, res)
+  .then(
+    (response) => {
+      if (!response) return next(new Error("failed to find quiz scores for the current user."));
+      res.send(response);
+      next();
+    },
+    err => handleResponse(res, 500, 'error'),
+  ));
+
 /*
   Returns all quizzes whose titles have matches for the provided searchString.
   Eventually need to extend this to respect tags, and probably add a more sophisticated

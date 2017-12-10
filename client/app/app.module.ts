@@ -19,6 +19,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { FriendsComponent } from './components/user-profile/friends/friends.component';
 import { SharedSessionsService } from './services/sessions.service';
+import { QuizScoresComponent } from './components/quizzes/quiz/quiz-scores/quiz-scores.component';
 
 @NgModule({
   declarations: [ AppComponent, routingComponents,
@@ -33,7 +34,8 @@ import { SharedSessionsService } from './services/sessions.service';
     SearchResultsComponent,
     LogoutComponent,
     UserProfileComponent,
-    FriendsComponent ],
+    FriendsComponent,
+    QuizScoresComponent ],
   imports: [ BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, AppRoutingModule ],
   providers: [ AccessGuard, AuthenticationService, SharedSessionsService ],
   bootstrap: [ AppComponent ],

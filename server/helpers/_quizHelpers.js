@@ -49,6 +49,19 @@ function getAnswersByQuestionId(req, res) {
     });
 }
 
+function getQuizScoresByUserId(req, res) {
+  // return scores for the quizId in the params belonging to the currently logged-in user.
+  return knex('scores')
+    .where('quizId', parseInt(req.params.quizId))
+    .andWhere('userId', req.user.id)
+    .orderBy('created_at')
+    .limit(10)
+    .returning('*')
+    .catch((err) => {
+      res.status(400).json({ status: err.message });
+    });
+}
+
 function createQuiz(req, res) {
   return handleQuizErrors(req)
     .then(() => knex('quizzes')
@@ -173,4 +186,5 @@ module.exports = {
   getQuestionById,
   getQuestionsByQuizId,
   getAnswersByQuestionId,
+  getQuizScoresByUserId
 };

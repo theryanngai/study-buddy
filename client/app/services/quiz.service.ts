@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { URLSearchParams } from '@angular/http';
+
 
 @Injectable()
 export class QuizService {
@@ -32,7 +34,7 @@ export class QuizService {
 
   // Create a score after a quiz attempt has been completed
   createScore(score) {
-    const createScoreUrl = '/api/quizzes/' + score.quizId + '/score/create'
+    const createScoreUrl = '/api/quizzes/' + score.quizId + '/score/create';
     console.log('Attempting to create score for QuizId: ', score.quizId);
     return this.http.post(createScoreUrl, score);
   }
@@ -53,5 +55,17 @@ export class QuizService {
     const getAnswersUrl = '/api/quizzes/' + quizId + '/questions/' + questionId + '/answers';
     console.log('Attempting to retrieve Answers for QuestionID: ', questionId);
     return this.http.get(getAnswersUrl, questionId);
+  }
+
+  getCurrentUserQuizScores(quizId) {
+    // const scoreDetails = { quizId: quizId, userId: userId };
+    // const params = new URLSearchParams();
+    // for (const key in scoreDetails) {
+    //   params.set(key, scoreDetails[key]);
+    // }
+
+    const getQuizScoresUrl = '/api/quizzes/' + quizId + '/myScores';
+    console.log('Attempting to retrieve the current user\'s Scores for QuizId:', quizId);
+    return this.http.get(getQuizScoresUrl);
   }
 }

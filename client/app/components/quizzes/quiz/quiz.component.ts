@@ -3,6 +3,7 @@ import { QueryList, ViewChildren } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from '../../../services/quiz.service';
 import { QuestionComponent } from './question/question.component';
+import { QuizScoresComponent} from "./quiz-scores/quiz-scores.component";
 import { SharedSessionsService} from "../../../services/sessions.service";
 import { Score } from '../../../models/score';
 
@@ -11,23 +12,26 @@ import { Score } from '../../../models/score';
   selector: 'app-quiz',
   providers: [QuizService],
   template: `
-    <div class="container">
+    <div [hidden]="showQuizScoreHistory" class="container">
       <h1>{{ quiz.title }}</h1>
       <h3 [hidden]="!submitted">{{ quizResultsText }}</h3>
       <form #quizForm="ngForm" (ngSubmit)="submit()">
         <div *ngFor="let question of quizQuestions; let i = index" [attr.data-index]="i">
           <question [question]="question" [questionNumber]="i + 1"></question>
         </div>
-        <button [disabled]="submitted" type="submit" class="btn btn-primary quiz-submit-btn">Submit</button>
+        <button [disabled]="submitted" type="submit" class="btn btn-primary quiz-submit-btn">
+          Submit
+        </button>
+        <a (click)="showQuizScoreHistory = true">View your performance on this Quiz</a>
       </form>
     </div>
+    <app-quiz-scores *ngIf="showQuizScoreHistory" [quiz]="quiz"></app-quiz-scores>
   `,
   styleUrls: ['./quiz.component.css']
 })
 
 export class QuizComponent implements OnInit {
-  @ViewChildren(QuestionComponent)
-  private viewChildren: QueryList<QuestionComponent>;
+  @ViewChildren(QuestionComponent) private viewChildren: QueryList<QuestionComponent>;
   quiz: any = { title: '' };
   quizScore: any;
   quizResultsText: string;
@@ -35,6 +39,7 @@ export class QuizComponent implements OnInit {
   quizQuestions: Array<any> = [];
   submitted: Boolean = false;
   isScoringComplete: Boolean = false;
+  showQuizScoreHistory: Boolean = false;
 
   constructor(private _quizService: QuizService,
               private route: ActivatedRoute,
