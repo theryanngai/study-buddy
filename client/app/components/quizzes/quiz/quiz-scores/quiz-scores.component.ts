@@ -34,6 +34,9 @@ export class QuizScoresComponent implements OnInit {
   }
 
   calculateAveragePercentage(scores) {
+    if (scores.length < 1) {
+      return this.averagePercentage = '0%';
+    }
     const scoresCount = scores.length;
     let scoresSum = 0;
 

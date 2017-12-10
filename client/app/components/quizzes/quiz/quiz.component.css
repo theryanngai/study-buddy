@@ -5,3 +5,6 @@
 .quiz-title {
   text-decoration: underline;
 }
+
+[hidden] { display: none !important;}
+

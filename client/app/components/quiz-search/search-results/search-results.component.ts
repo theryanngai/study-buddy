@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DashboardService } from '../../services/dashboard.service';
+import { DashboardService } from '../../../services/dashboard.service';
 
 @Component({
   selector: 'app-search-results',

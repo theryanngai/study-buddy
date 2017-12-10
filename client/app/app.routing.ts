@@ -7,7 +7,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { QuizCreatorComponent } from './components/quizzes/quiz-creator/quiz-creator.component';
 import { QuizCreationResultsComponent} from './components/quizzes/quiz-creator/quiz-creation-results/quiz-creation-results.component';
 import { QuizComponent } from './components/quizzes/quiz/quiz.component';
-import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { SearchResultsComponent } from './components/quiz-search/search-results/search-results.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { FriendsComponent } from './components/user-profile/friends/friends.component';
 import { AccessGuard } from './services/access-guard.service';

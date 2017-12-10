@@ -11,8 +11,8 @@ import { AnswerCreatorComponent } from './components/quizzes/quiz-creator/questi
 import { QuizComponent } from './components/quizzes/quiz/quiz.component';
 import { QuestionComponent } from './components/quizzes/quiz/question/question.component';
 import { AnswerComponent } from './components/quizzes/quiz/question/answer/answer.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { SearchBarComponent } from './components/quiz-search/search-bar/search-bar.component';
+import { SearchResultsComponent } from './components/quiz-search/search-results/search-results.component';
 import { LogoutComponent } from './components/auth/logout/logout.component';
 import { AccessGuard } from './services/access-guard.service';
 import { AuthenticationService } from './services/authentication.service';
@@ -21,6 +21,7 @@ import { FriendsComponent } from './components/user-profile/friends/friends.comp
 import { SharedSessionsService } from './services/sessions.service';
 import { QuizScoresComponent } from './components/quizzes/quiz/quiz-scores/quiz-scores.component';
 import { UserQuizzesComponent } from './components/user-profile/user-quizzes/user-quizzes.component';
+import { QuizRaterComponent } from './components/quizzes/quiz/quiz-rater/quiz-rater.component';
 
 @NgModule({
   declarations: [ AppComponent, routingComponents,
@@ -37,7 +38,8 @@ import { UserQuizzesComponent } from './components/user-profile/user-quizzes/use
     UserProfileComponent,
     FriendsComponent,
     QuizScoresComponent,
-    UserQuizzesComponent],
+    UserQuizzesComponent,
+    QuizRaterComponent],
   imports: [ BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, AppRoutingModule ],
   providers: [ AccessGuard, AuthenticationService, SharedSessionsService ],
   bootstrap: [ AppComponent ],
