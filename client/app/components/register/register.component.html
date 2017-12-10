@@ -1,15 +1,59 @@
-<div class="container">
+<div [hidden]="isRegistrationComplete" class="container registration">
   <h1>Registration Form</h1>
   <form #registrationForm="ngForm" (ngSubmit)="submit(registrationForm.value)">
-    <input type="text" placeholder="Your first name" name="firstName" [(ngModel)]="firstName">
-    <input type="text" placeholder="Your last name" name="lastName" [(ngModel)]="lastName">
-    <input type="text" placeholder="Your e-mail" name="email" [(ngModel)]="email">
-    <input type="text" placeholder="Desired username" name="username" [(ngModel)]="username">
-    <input type="text" placeholder="Desired password"
-           type="password" name="password" [(ngModel)]="password">
+    <div class="form-group col s12">
+      <span><label for="first-name">First</label></span>
+      <input type="text"
+             placeholder="Your first name"
+             name="firstName"
+             id="first-name"
+             [(ngModel)]="firstName"
+             class="form-control">
+    </div>
+    <div class="form-group col s12">
+      <span><label for="last-name">Last</label></span>
+      <input type="text"
+             placeholder="Your last name"
+             name="lastName"
+             id="last-name"
+             [(ngModel)]="lastName"
+             class="form-control">
+    </div>
+    <div class="form-group col s12">
+      <span><label for="email">E-mail</label></span>
+      <input type="text"
+             placeholder="Your e-mail"
+             name="email"
+             id="email"
+             [(ngModel)]="email"
+             class="form-control">
+    </div>
+    <div class="form-group col s12">
+      <span><label for="username">Username</label></span>
+      <input type="text"
+             placeholder="Your desired username"
+             name="username"
+             id="username"
+             [(ngModel)]="username"
+             class="form-control">
+    </div>
+    <div class="form-group col s12">
+      <span><label for="password">Password</label></span>
+      <input type="password"
+             placeholder="Your desired password"
+             name="password"
+             id="password"
+             [(ngModel)]="password"
+             class="form-control">
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
+<div [hidden]="!isRegistrationComplete" class="registration-success">
+  <h1>{{ resultsMessage }}</h1>
+  <h3><a routerLink="/login">Click here</a> to login now.</h3>
+</div>
+
 
 
 

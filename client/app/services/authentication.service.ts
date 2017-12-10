@@ -32,14 +32,6 @@ export class AuthenticationService {
 
   register(user) {
     console.log('Attempting to register user.username');
-    this.http.post('/auth/register', user)
-      .subscribe(
-        data => {
-          console.log('Successfully saved user: ', user.username);
-        },
-        err =>  {
-          console.log(err);
-        }
-      );
+    return this.http.post('/auth/register', user);
   }
 }

@@ -10,11 +10,28 @@ import { User } from '../../models/user';
 })
 export class RegisterComponent {
   user: any;
+  resultsMessage: string;
+  isRegistrationComplete: Boolean;
 
   constructor(private authService: AuthenticationService) {};
 
   submit(userInfo) {
+    // const ctrl = this;
     this.user = new User(userInfo);
-    this.authService.register(this.user);
+    this.authService.register(this.user)
+      .subscribe(
+        data => {
+          console.log('Successfully registered user.');
+          this.resultsMessage = 'Thank you for registering with StudyBuddy!';
+          this.isRegistrationComplete = true;
+        },
+        err =>  {
+          this.resultsMessage = 'Something went wrong with your registration! Please try again.';
+          console.log(err);
+        }
+      );;
+  }
+  hello() {
+
   }
 }
