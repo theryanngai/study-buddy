@@ -20,6 +20,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { FriendsComponent } from './components/user-profile/friends/friends.component';
 import { SharedSessionsService } from './services/sessions.service';
 import { QuizScoresComponent } from './components/quizzes/quiz/quiz-scores/quiz-scores.component';
+import { UserQuizzesComponent } from './components/user-profile/user-quizzes/user-quizzes.component';
 
 @NgModule({
   declarations: [ AppComponent, routingComponents,
@@ -35,7 +36,8 @@ import { QuizScoresComponent } from './components/quizzes/quiz/quiz-scores/quiz-
     LogoutComponent,
     UserProfileComponent,
     FriendsComponent,
-    QuizScoresComponent ],
+    QuizScoresComponent,
+    UserQuizzesComponent],
   imports: [ BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, AppRoutingModule ],
   providers: [ AccessGuard, AuthenticationService, SharedSessionsService ],
   bootstrap: [ AppComponent ],

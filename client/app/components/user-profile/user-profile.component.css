@@ -20,3 +20,19 @@ ul {
   color: green;
 }
 
+button {
+  margin: 10px;
+}
+
+.user-profile-info {
+  margin: 20px;
+  padding: 20px;
+  border-style: solid;
+  border-color: black;
+  border-width: thin;
+  width: 50%;
+  height: 50%;
+  display: inline-block;
+  text-align: center;
+}
+

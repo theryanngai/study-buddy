@@ -5,6 +5,7 @@ const router = express.Router();
 const _authHelpers = require('../auth/_helpers');
 const _userHelpers = require('../helpers/_userHelpers');
 const _scoreHelpers = require('../helpers/_scoreHelpers');
+const _quizHelpers = require('../helpers/_quizHelpers');
 
 router.get('/loginCheck', _authHelpers.loginRequired, (req, res, next) => {
   handleResponse(res, 200, 'success');
@@ -17,6 +18,12 @@ router.get('/user/:id', _authHelpers.loginRequired, (req, res, next) => _userHel
   ));
 
 router.get('/user/:id/scores', _authHelpers.loginRequired, (req, res, next) => _scoreHelpers.getScoresByUserId(req, res)
+  .then(
+    response => res.send(response),
+    err => handleResponse(res, 500, 'error'),
+  ));
+
+router.get('/user/:userId/quizzes', _authHelpers.loginRequired, (req, res, next) => _quizHelpers.getQuizzesByUserId(req, res)
   .then(
     response => res.send(response),
     err => handleResponse(res, 500, 'error'),

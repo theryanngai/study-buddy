@@ -5,11 +5,11 @@
 </h3>
 
 <div [hidden]="scores.length < 1" class="recent-attempts-container">
-  <h3>Most Recent Attempts for this Quiz:</h3>
+  <h3>Most Recent Attempts:</h3>
   <ul>
     <li *ngFor="let scoreObject of scores">
       <h4>
-        {{ scoreObject.correctCount + '/' + scoreObject.incorrectCount + ': '}}
+        {{ scoreObject.correctCount + '/' + (scoreObject.correctCount + scoreObject.incorrectCount) + ': '}}
         <span class="score-percentage"> {{ scoreObject.score*100 + '%' }}</span>
       </h4>
     </li>
@@ -17,8 +17,12 @@
 </div>
 
 <div [hidden]="scores.length < 1" class="average-score-container">
-  <h3>Your Average Score for this Quiz:</h3>
-  <h1><span class="average-percentage">{{ averagePercentage }}</span></h1>
+  <h2>
+    Your Average Score for this Quiz:
+    <h1>
+      <span class="average-percentage">{{ averagePercentage }}</span>
+    </h1>
+  </h2>
 </div>
 <br>
 <a (click)="callParent()">Back to Quiz</a>

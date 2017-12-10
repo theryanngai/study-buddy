@@ -6,8 +6,8 @@ import { DashboardService } from '../../services/dashboard.service';
   selector: 'app-search-results',
   providers: [DashboardService],
   template: `
-    <div class="container">
-      <h1>
+    <div class="container search-results">
+      <h1 class="search-results-title">
         Search Results for: "{{ searchString }}"
       </h1>
       <div *ngFor="let quiz of searchResults">

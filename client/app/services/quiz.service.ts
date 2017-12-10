@@ -45,6 +45,12 @@ export class QuizService {
     return this.http.get(getQuizByIdUrl, quizId);
   }
 
+  getQuizzesByUserId(userId) {
+    const getQuizzesByUserIdUrl = '/api/user/' + userId + '/quizzes';
+    console.log('Attempting to retrieve Quizzes for user:', userId);
+    return this.http.get(getQuizzesByUserIdUrl);
+  }
+
   getQuestionsByQuizId(quizId) {
     const getQuestionsByQuizIdUrl = '/api/quizzes/' + quizId + '/questions';
     console.log('Attempting to retrieve Questions for QuizID: ', quizId);
@@ -58,12 +64,6 @@ export class QuizService {
   }
 
   getCurrentUserQuizScores(quizId) {
-    // const scoreDetails = { quizId: quizId, userId: userId };
-    // const params = new URLSearchParams();
-    // for (const key in scoreDetails) {
-    //   params.set(key, scoreDetails[key]);
-    // }
-
     const getQuizScoresUrl = '/api/quizzes/' + quizId + '/myScores';
     console.log('Attempting to retrieve the current user\'s Scores for QuizId:', quizId);
     return this.http.get(getQuizScoresUrl);

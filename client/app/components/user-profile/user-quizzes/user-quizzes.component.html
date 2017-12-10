@@ -1,0 +1,8 @@
+<div class="user-quizzes-list">
+  <h1>Quizzes authored by {{ firstName }}</h1>
+  <ul>
+    <li *ngFor="let quiz of userQuizzes">
+      <a routerLink="{{ '//quiz/' + quiz.id }}" >{{ quiz.title }}</a>
+    </li>
+  </ul>
+</div>

@@ -52,7 +52,7 @@ quizRouter.get('/:quizId', _authHelpers.loginRequired, (req, res, next) => _quiz
 quizRouter.get('/:quizId/myScores', _authHelpers.loginRequired, (req, res, next) => _quizHelpers.getQuizScoresByUserId(req, res)
   .then(
     (response) => {
-      if (!response) return next(new Error("failed to find quiz scores for the current user."));
+      if (!response) return next(new Error('failed to find quiz scores for the current user.'));
       res.send(response);
       next();
     },

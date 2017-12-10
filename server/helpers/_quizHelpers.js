@@ -49,13 +49,24 @@ function getAnswersByQuestionId(req, res) {
     });
 }
 
+// Returns the 10 of the currently logged-in user's most recent scores for the provided quizId.
 function getQuizScoresByUserId(req, res) {
-  // return scores for the quizId in the params belonging to the currently logged-in user.
   return knex('scores')
     .where('quizId', parseInt(req.params.quizId))
     .andWhere('userId', req.user.id)
     .orderBy('created_at')
     .limit(10)
+    .returning('*')
+    .catch((err) => {
+      res.status(400).json({ status: err.message });
+    });
+}
+
+// Returns all quizzes created by the provided userId, ordered by creation date.
+function getQuizzesByUserId(req, res) {
+  return knex('quizzes')
+    .where('userId', parseInt(req.params.userId))
+    .orderBy('created_at')
     .returning('*')
     .catch((err) => {
       res.status(400).json({ status: err.message });
@@ -182,9 +193,10 @@ module.exports = {
   createQuestion,
   getQuizById,
   getQuizzesByCurrentUser,
+  getQuizzesByUserId,
   searchQuizzes,
   getQuestionById,
   getQuestionsByQuizId,
   getAnswersByQuestionId,
-  getQuizScoresByUserId
+  getQuizScoresByUserId,
 };

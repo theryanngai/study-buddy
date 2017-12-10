@@ -37,7 +37,7 @@ export class QuizScoresComponent implements OnInit {
     const scoresCount = scores.length;
     let scoresSum = 0;
 
-    scores.forEach(scoreObject => scoresSum += scoreObject.score);
+    scores.forEach(scoreObject => scoresSum += parseFloat(scoreObject.score));
 
     this.averagePercentage = scoresSum/scoresCount * 100 + '%';
   }

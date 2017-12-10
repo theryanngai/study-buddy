@@ -23,8 +23,11 @@ import { Score } from '../../../models/score';
           Submit
         </button>
         <div>
-          <a (click)="showQuizScoreHistory = true">View your performance on this Quiz</a>
+          <a (click)="showQuizScoreHistory = true">View your historical performance on this Quiz</a>
         </div>
+        <h3 [hidden]="!submitted">
+          Good work! <a (click)="reloadQuiz()">Click here</a> to give this quiz another shot.
+        </h3>
       </form>
     </div>
     <app-quiz-scores (backToQuiz)="showQuizScoreHistory=false" *ngIf="showQuizScoreHistory" [quiz]="quiz">
@@ -128,6 +131,10 @@ export class QuizComponent implements OnInit {
           console.log('Score Creation Success!');
         }
       );
+  }
+
+  reloadQuiz() {
+    window.location.reload();
   }
 
   submit() {
