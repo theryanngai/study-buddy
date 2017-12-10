@@ -10,6 +10,7 @@ import { DashboardService } from '../../services/dashboard.service';
       <h1 class="search-results-title">
         Search Results for: "{{ searchString }}"
       </h1>
+      <h3 [hidden]="searchResults.length > 0">No results found.</h3>
       <div *ngFor="let quiz of searchResults">
         <a href="{{ '/quiz/' + quiz.id }}">{{ quiz.title }}</a>
       </div>

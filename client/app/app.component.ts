@@ -11,9 +11,9 @@ import { SharedSessionsService} from "./services/sessions.service";
         <ul class="nav navbar-nav">
           <li [hidden]="isAuthenticated"><a routerLink="/login">Login</a></li>
           <li [hidden]="isAuthenticated"><a routerLink="/register">Create an Account</a></li>
-          <li [hidden]="!isAuthenticated"><a routerLink="/dashboard">Dashboard</a></li>
-          <li [hidden]="!isAuthenticated"><a routerLink="/quiz/create">Create A Quiz</a></li>
           <li [hidden]="!isAuthenticated"><a><app-search-bar></app-search-bar></a></li>
+          <li [hidden]="!isAuthenticated"><a routerLink="/dashboard">Dashboard</a></li>
+          <li [hidden]="!isAuthenticated"><a routerLink="/quizzes/create">Create A Quiz</a></li>
           <li [hidden]="!isAuthenticated"><a routerLink="/my-friends">My Friends</a></li>
           <li [hidden]="!isAuthenticated">
             <a routerLink="/user-profile/{{ currentUser.id }}" >

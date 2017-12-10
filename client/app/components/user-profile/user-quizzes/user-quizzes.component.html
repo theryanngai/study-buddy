@@ -1,5 +1,10 @@
 <div class="user-quizzes-list">
-  <h1>Quizzes authored by {{ firstName }}</h1>
+  <h1 [hidden]="userQuizzes.length < 1">
+    Quizzes authored by {{ firstName }}
+  </h1>
+  <h3 [hidden]="userQuizzes.length >=1">
+    This user hasn't created any quizzes yet.
+  </h3>
   <ul>
     <li *ngFor="let quiz of userQuizzes">
       <a routerLink="{{ '//quiz/' + quiz.id }}" >{{ quiz.title }}</a>

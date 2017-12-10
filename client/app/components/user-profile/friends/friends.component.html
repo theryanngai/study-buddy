@@ -1,6 +1,7 @@
 <div class="container">
   <h1>{{ firstName }}'s Friends</h1>
   <div class="user-friends-container">
+    <h4 [hidden]="friendList.length >= 1">How sad... you haven't made any friends yet! Search below to find some.</h4>
     <ul>
       <li *ngFor="let friend of friendList">
         <a routerLink="{{ '//user-profile/' + friend.id }}" >{{ friend.username }}</a>

@@ -1,7 +1,13 @@
 <div class="container">
-  <h1>Welcome to StudyBuddy!</h1>
+  <h1>Welcome to StudyBuddy.</h1>
 
-  <h3>Quizzes You've Created</h3>
+  <h3 [hidden]="userQuizzes.length < 1">
+    Quizzes You've Created
+  </h3>
+  <h4 [hidden]="userQuizzes.length >= 1">
+    You haven't created any quizzes yet!
+    <a routerLink="/quizzes/create">Click here</a> to get started.
+  </h4>
   <div *ngFor="let quiz of userQuizzes">
     <a href="{{ '/quiz/' + quiz.id }}">{{ quiz.title }}</a>
   </div>

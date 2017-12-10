@@ -62,4 +62,6 @@
   <br>
   <a [hidden]="!isCurrentUserProfile" routerLink="/my-friends">Manage Friends</a>
 </div>
-<app-user-quizzes [userId]="userId" [firstName]="user.firstName"></app-user-quizzes>
+<app-user-quizzes [userId]="userId"
+                  [firstName]="user.firstName">
+</app-user-quizzes>

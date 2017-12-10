@@ -25,7 +25,8 @@ function searchUsers(req, res) {
   const targetUsername = req.params.username;
 
   return knex('users')
-    .where('username', 'ilike', `%${targetUsername}%`)
+    .whereNot('id', req.user.id)
+    .andWhere('username', 'ilike', `%${targetUsername}%`)
     .returning('*')
     .catch((err) => {
       res.status(400).json({ status: err.message });

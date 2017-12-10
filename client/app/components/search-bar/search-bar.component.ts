@@ -5,13 +5,24 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-search-bar',
   template: `
-      <input type="text" placeholder="Search for a quiz" #navbarSearchInput>
-      <button type="btn" (click)="search(navbarSearchInput.value)">Go!</button>
+      <input class="form-control navbar-search-input"
+             type="text"
+             placeholder="Search for a quiz"
+             [(ngModel)]="searchString"
+             #navbarSearchInput>
+      <button type="submit"
+              class="btn btn-success btn-sm"
+              (click)="search(navbarSearchInput.value)"
+              [disabled]="!searchString">
+        Go!
+      </button>
   `,
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent {
-  constructor(private _router: Router) { }
+  searchString: string;
+
+  constructor(private _router: Router) {}
 
   search(searchString) {
     this._router.navigate(['/search-results', { searchString: searchString }]);
