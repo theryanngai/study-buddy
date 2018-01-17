@@ -8,7 +8,6 @@ const cors = require('cors');
 const passport = require('passport');
 const session = require('express-session');
 
-
 // Get our API routes
 const routeConfig = require('./server/config/route-config');
 // const api = require('./server/routes/api');
